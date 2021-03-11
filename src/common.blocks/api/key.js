@@ -4,6 +4,12 @@ import pemEncodedKey from './secret-key.js'
 /*
 Convert a string into an ArrayBuffer
 */
+
+function ab2str(buf) {
+  return String.fromCharCode.apply(null, new Uint8Array(buf));
+}
+
+
 function str2ab(str) {
   const buf = new ArrayBuffer(str.length)
   const bufView = new Uint8Array(buf)
@@ -56,7 +62,6 @@ const caninicalized = (map) => {
 
 const data = new TextEncoder().encode(caninicalized(headerToSign))
 console.log(data)
-let sig
 
 importPrivateKey(pemEncodedKey)
   .then((k) => {
@@ -71,8 +76,11 @@ importPrivateKey(pemEncodedKey)
   })
   .then(function(signature) {
     //returns an ArrayBuffer containing the signature
-    sig = new Uint8Array(signature)
+    let sig = new Uint8Array(signature)
     console.log(sig)
-    let string = new TextDecoder().decode(sig)
+    let decodeString = new TextDecoder('utf-8').decode(sig)
+    console.log(decodeString)
+    let string = ab2str(sig)
     console.log(string)
+    document.body.textContent = string
   })
