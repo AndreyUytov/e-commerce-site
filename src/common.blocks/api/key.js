@@ -6,9 +6,8 @@ Convert a string into an ArrayBuffer
 */
 
 function ab2str(buf) {
-  return String.fromCharCode.apply(null, new Uint8Array(buf));
+  return String.fromCharCode.apply(null, new Uint8Array(buf))
 }
-
 
 function str2ab(str) {
   const buf = new ArrayBuffer(str.length)
@@ -46,10 +45,13 @@ function importPrivateKey(pem) {
   )
 }
 
+let currentTime = Date.now()
+console.log(currentTime)
+
 const headerToSign = new Map()
 headerToSign.set('WM_SEC.KEY_VERSION', '3')
 headerToSign.set('WM_CONSUMER.ID', '4e510906-f2b5-4808-b30e-b9ecb437b61d')
-headerToSign.set('WM_CONSUMER.INTIMESTAMP', Date.now())
+headerToSign.set('WM_CONSUMER.INTIMESTAMP', currentTime)
 
 const caninicalized = (map) => {
   let arrForSign = []
@@ -78,9 +80,9 @@ importPrivateKey(pemEncodedKey)
     //returns an ArrayBuffer containing the signature
     let sig = new Uint8Array(signature)
     console.log(sig)
-    let decodeString = new TextDecoder('utf-8').decode(sig)
-    console.log(decodeString)
-    let string = ab2str(sig)
-    console.log(string)
-    document.body.textContent = string
+    let signatureString = ab2str(sig)
+    console.log(signatureString)
+
+    let signatureBase64 = window.btoa(signatureString)
+    console.log('от сюда', signatureBase64, 'до сюда')
   })
