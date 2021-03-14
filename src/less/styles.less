@@ -1,5 +1,26 @@
 @import (reference) './variables.less';
 
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../assets/fonts/Montserrat-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../assets/fonts/Montserrat-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../assets/fonts/Montserrat-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
 html {
   font: 16px Arial, Helvetica, sans-serif;
 }
@@ -55,7 +76,7 @@ body {
   line-height: 24px;
 
   color: var(--blackFonColor);
-  background: #e5e5e5;
+  background: #ffffff;
 }
 
 .content-box-component {
@@ -156,8 +177,8 @@ input[type='radio'].visually-hidden {
 }
 
 .snap {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   padding: 0;
 
   display: flex;
@@ -201,17 +222,17 @@ input[type='radio'].visually-hidden {
 }
 
 .content {
-  min-width: 320px;
+  min-width: 328px;
   width: 100%;
   padding: 0 16px;
   margin: 0 auto;
 }
 
-@media (min-width: 1450px) {
+@media (min-width: 1220px) {
   .content {
-    max-width: 1450px;
+    max-width: 1200px;
     width: 100%;
-    padding: 0 16px;
+    padding: 0 10px;
     margin: 0 auto;
   }
 }

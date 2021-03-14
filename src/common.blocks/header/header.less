@@ -1,0 +1,170 @@
+.page-header {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 64px;
+  padding: 9px 0;
+
+  background: #FFFFFF;
+  box-shadow: 0px 4px 8px rgba(54, 78, 76, 0.08), 0px 4px 16px rgba(54, 78, 76, 0.06);
+}
+
+.page-header__inner {
+  display: flex;
+
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu-site__inner {
+  display: none;
+}
+
+.page-header__menu-site {
+  margin-right: 27px;
+}
+
+.page-header__main-panel {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-panel__logo {
+  width: 158px;
+  height: 46px;
+}
+
+.main-panel__catalog-button {
+  display: none;
+}
+
+.search-form__label {
+  display: none;
+}
+
+.main-panel__user-block {
+  display: none;
+}
+
+.header-page__popular-block {
+  display: none;
+}
+
+
+
+// /////////////////
+
+@media(min-width: 1220px) {
+  .page-header {
+    position: static;
+    height: auto;
+    padding: 12px 0;
+    margin-bottom: 24px;
+  
+    box-shadow: none;
+  }
+  
+  .page-header__inner {
+    flex-direction: column;
+  }
+
+  .show-menu {
+    display: none;
+  }
+  
+  .page-header__menu-site {
+    width: 100%;
+    margin-right: 0px;
+  }
+
+  .menu-site__inner {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-site {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-site__location {
+    margin-right: 24px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .nav-site__list {
+    display: flex;
+    align-items: center;
+
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .nav-site__list-item {
+    margin-right: 24px;
+
+    &:last-of-type {
+      margin-right: 0px;
+    }
+  }
+
+  .nav-site__list-link {
+    height: 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  .menu-site__phone-block {
+    justify-self: end;
+  }
+
+  .phone-block__phone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .page-header__main-panel {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .main-panel__logo {
+    width: 158px;
+    height: 46px;
+  }
+  
+  .main-panel__catalog-button {
+    display: none;
+  }
+  
+  .search-form__label {
+    display: none;
+  }
+  
+  .main-panel__user-block {
+    display: none;
+  }
+  
+  .header-page__popular-block {
+    display: none;
+  }
+}
