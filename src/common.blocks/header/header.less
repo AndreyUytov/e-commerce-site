@@ -5,8 +5,9 @@
   height: 64px;
   padding: 9px 0;
 
-  background: #FFFFFF;
-  box-shadow: 0px 4px 8px rgba(54, 78, 76, 0.08), 0px 4px 16px rgba(54, 78, 76, 0.06);
+  background: #ffffff;
+  box-shadow: 0px 4px 8px rgba(54, 78, 76, 0.08),
+    0px 4px 16px rgba(54, 78, 76, 0.06);
 }
 
 .page-header__inner {
@@ -16,11 +17,8 @@
   align-items: center;
 }
 
-.menu-site__inner {
-  display: none;
-}
-
 .page-header__menu-site {
+  position: relative;
   margin-right: 27px;
 }
 
@@ -29,6 +27,28 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.menu-site__inner {
+  display: none;
+
+  position: absolute;
+  top: 84px;
+  width: 100vw;
+  height: 100vh;
+  grid-template-rows: [start]auto [end]auto;
+  place-content: start;
+}
+
+.menu-site__right-block {
+  grid-row: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .main-panel__logo {
@@ -52,38 +72,38 @@
   display: none;
 }
 
-
-
 // /////////////////
 
-@media(min-width: 1100px) {
+@media (min-width: 1100px) {
   .page-header {
     position: static;
     height: auto;
     padding: 12px 0;
     margin-bottom: 24px;
-  
+
     box-shadow: none;
   }
-  
+
   .page-header__inner {
-    grid-column: content;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 12px;
   }
 
   .show-menu {
     display: none;
   }
-  
+
   .page-header__menu-site {
     width: 100%;
     margin-right: 0px;
+
+    grid-column: content;
   }
 
   .menu-site__inner {
+    position: static;
+
     width: 100%;
+    height: auto;
     display: grid;
     grid-template-columns: 3fr minmax(156px, 1fr);
     grid-template-rows: 24px;
@@ -114,7 +134,7 @@
     display: flex;
     align-items: center;
 
-    font-family: "Montserrat";
+    font-family: 'Montserrat';
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -141,24 +161,18 @@
     justify-self: end;
   }
 
-  .right-block__phone {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-  }
-  
   .page-header__main-panel {
+    grid-column: content;
     width: 100%;
     display: grid;
-    grid-template-columns: [logo]minmax(180px, 2fr) [search-block]7fr [user-block] minmax(280px, 3fr);
+    grid-template-columns: [logo]minmax(180px, 2fr) [search-block]7fr [user-block] minmax(
+        280px,
+        3fr
+      );
     grid-template-rows: 52px;
     grid-gap: 12px 22px;
   }
-  
+
   .main-panel__logo {
     width: 180px;
     height: 52px;
@@ -177,7 +191,7 @@
     align-items: center;
     justify-items: center;
   }
-  
+
   .search-form__toogle-form {
     display: none;
   }
@@ -185,7 +199,7 @@
   .search-block__catalog-button {
     display: flex;
   }
-  
+
   .search-form__label {
     width: 100%;
     height: 40px;
@@ -210,7 +224,7 @@
     width: 72px;
     height: 40px;
   }
-  
+
   .main-panel__user-block {
     display: flex;
     align-items: center;
@@ -227,8 +241,9 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .header-page__popular-block {
+    grid-column: content;
     width: 100%;
     height: 60px;
     padding: 10px 24px;
@@ -237,7 +252,7 @@
     align-items: center;
     justify-content: space-between;
 
-    background: #F1F0F5;
+    background: #f1f0f5;
     border-radius: 6px;
   }
 
@@ -256,16 +271,22 @@
     position: relative;
     margin-right: 16px;
     padding-right: 32px;
-      &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        right: 0px;
-        width: 16px;
-        height: 16px;
-        transform: translateY(-50%);
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0px;
+      width: 16px;
+      height: 16px;
+      transform: translateY(-50%);
 
-        background-image: url('./svg/romb.svg');
-      }
+      background-image: url('./svg/romb.svg');
+    }
   }
+}
+
+.show {
+  display: grid;
+  --burger-svg: none;
+  --close-svg: block;
 }

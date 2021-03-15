@@ -1,8 +1,7 @@
 <header class="page-header">
   <div class="page-header__inner content">
     <div class="page-header__menu-site">
-
-      <button class="menu-site__toggle-snap snap show-menu">
+      <button class="menu-site__toggle-snap snap show">
         <svg width="28" height="28" class="toggle-snap__toogle-svg">
           <use style="display: var(--burger-svg, block);" href="#snap-burger" />
           <use style="display: var(--close-svg, none);" href="#close" />
@@ -10,7 +9,7 @@
         <span class="visually-hidden">Open/close menu</span>
       </button>
 
-      <div class="menu-site__inner">
+      <div class="menu-site__inner show">
         <nav class="nav-site">
           <div class="nav-site__location">
             <svg width="24" height="24" class="location__svg">
@@ -62,7 +61,6 @@
           </a>
         </div>
       </div>
-
     </div>
 
     <div class="page-header__main-panel">
@@ -82,12 +80,16 @@
 
         <div class="search-block__search-form">
           <button class="search-form__toogle-form snap">
-            <svg class="toogle-form__svg">
+            <svg class="toogle-form__svg" width="28" height="28">
               <use href="#search" />
             </svg>
           </button>
-          <label class="search-form__label">
-            <input type="text" class="search-form__input" placeholder="for example, 'Imp' or 'Black'" />
+          <label class="search-form__label custom-label">
+            <input
+              type="text"
+              class="search-form__input"
+              placeholder="for example, 'Imp' or 'Black'"
+            />
             <button class="search-form__submit snap" type="submit">
               <svg width="24" height="24" class="search-form__submit-svg">
                 <use href="#search" />
@@ -104,7 +106,7 @@
               <use href="#user" />
             </svg>
             <span class="user-block__link-text">
-                Войти
+              Войти
             </span>
           </a>
         </li>
@@ -114,7 +116,7 @@
               <use href="#favorite" />
             </svg>
             <span class="user-block__link-text">
-                Избранное
+              Избранное
             </span>
           </a>
         </li>
@@ -124,7 +126,7 @@
               <use href="#basket" />
             </svg>
             <span class="user-block__link-text">
-                Корзина
+              Корзина
             </span>
           </a>
         </li>
