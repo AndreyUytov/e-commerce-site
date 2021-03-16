@@ -20,7 +20,7 @@ if (menuToggle) {
 
     gsap.from(menuInner, {
       x: -300,
-      duration: 0.2,
+      duration: 0.3,
     })
   })
 }
@@ -28,6 +28,7 @@ if (menuToggle) {
 const upRowHeader = pageHeader.querySelector('.page-header__menu-site')
 const downRowHeader = pageHeader.querySelector('.header-page__popular-block')
 const sticky = pageHeader.querySelector('.page-header__main-panel')
+const headerContent = document.querySelector('.page-header__inner')
 let isSticky = false
 document.addEventListener('scroll', () => {
   if (document.documentElement.clientWidth < 1100) return
@@ -44,42 +45,34 @@ document.addEventListener('scroll', () => {
 
 document.addEventListener('sticky-header-on', () => {
   isSticky = true
+
+  pageHeader.classList.add('page-header--sticky')
+  headerContent.classList.add('page-header__inner--sticky')
   gsap.to(downRowHeader, {
-    y: -100,
-    opacity: 0,
-    duration: 0.2,
     display: 'none',
+    duration: 0
   })
   gsap.to(upRowHeader, {
-    y: 100,
-    opacity: 0,
-    duration: 0.2,
     display: 'none',
-  })
-  pageHeader.style.position = 'sticky'
-  pageHeader.style.top = 10 + 'px'
-  gsap.to(pageHeader, {
-    height: 84,
-    opacity: 0.8,
+    duration: 0
   })
 })
 
 document.addEventListener('sticky-header-off', () => {
   isSticky = false
-  gsap.to(downRowHeader, {
-    y: '',
-    opacity: '',
-    display: '',
-  })
-  gsap.to(upRowHeader, {
-    y: '',
-    opacity: '',
-    display: '',
-  })
-  pageHeader.style.position = ''
-  pageHeader.style.top = ''
-  gsap.to(pageHeader, {
-    height: '',
-    opacity: '',
-  })
+  gsap.fromTo(downRowHeader, {
+    y: -60,
+    opacity: 0,
+    duration: 0.3
+  },{display: '', y: '',
+  opacity: 1,})
+  gsap.fromTo(upRowHeader, {
+    y: 60,
+    opacity: 0,
+    duration: 0.3
+  }, {display: '',y: '',
+  opacity: 1,})
+
+  pageHeader.classList.remove('page-header--sticky')
+  headerContent.classList.remove('page-header__inner--sticky')
 })

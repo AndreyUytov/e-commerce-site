@@ -131,8 +131,25 @@
     box-shadow: none;
   }
 
+  // for animate
+  .page-header--sticky {
+    position: sticky;
+    top: 0px;
+  }
+
   .page-header__inner {
     display: grid;
+  }
+
+  // for animate
+  .page-header__inner--sticky {
+    position: sticky;
+    top: 12px;
+
+    padding: 16px 0px;
+    
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
   }
 
   .show-menu {
@@ -222,6 +239,13 @@
       );
     grid-template-rows: 52px;
     grid-gap: 12px 22px;
+  }
+
+  //  for animate
+
+  .page-header__main-panel--sticky {
+    position: sticky;
+    top: 0;
   }
 
   .main-panel__logo {
