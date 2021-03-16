@@ -1,7 +1,7 @@
 <header class="page-header">
   <div class="page-header__inner content">
     <div class="page-header__menu-site">
-      <button class="menu-site__toggle-snap snap show">
+      <button class="menu-site__toggle-snap snap">
         <svg width="28" height="28" class="toggle-snap__toogle-svg">
           <use style="display: var(--burger-svg, block);" href="#snap-burger" />
           <use style="display: var(--close-svg, none);" href="#close" />
@@ -9,7 +9,7 @@
         <span class="visually-hidden">Open/close menu</span>
       </button>
 
-      <div class="menu-site__inner show">
+      <div class="menu-site__inner">
         <nav class="nav-site">
           <div class="nav-site__location">
             <svg width="24" height="24" class="location__svg">
@@ -59,6 +59,24 @@
               8 (800) 222-34-84
             </span>
           </a>
+        </div>
+        <div class="menu-site__mobile-buttons">
+          <button class="button">
+            <svg width="24" height="24" class="catalog-button__svg">
+              <use href="#burger" />
+            </svg>
+            <span class="catalog-button__text">
+              Каталог
+            </span>
+          </button>
+          <button class="button button--akcent">
+            <svg width="24" height="24" class="action-button__svg">
+              <use href="#percent" />
+            </svg>
+            <span class="action-button__text">
+              Акции
+            </span>
+          </button>
         </div>
       </div>
     </div>
