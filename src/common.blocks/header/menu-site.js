@@ -27,19 +27,21 @@ if (menuToggle) {
 
 const upRowHeader = pageHeader.querySelector('.page-header__menu-site')
 const downRowHeader = pageHeader.querySelector('.header-page__popular-block')
-const sticky = pageHeader.querySelector('.page-header__main-panel')
 const headerContent = document.querySelector('.page-header__inner')
 let isSticky = false
 document.addEventListener('scroll', () => {
   if (document.documentElement.clientWidth < 1100) return
+  console.log('scroll')
 
   if (window.pageYOffset > 48 && !isSticky) {
     document.dispatchEvent(new CustomEvent('sticky-header-on'))
+    console.log('sticky-on')
   }
 
   if (window.pageYOffset < 48 && isSticky) {
     document.dispatchEvent(new CustomEvent('sticky-header-off'))
     isSticky = false
+    console.log('sticky-off')
   }
 })
 
@@ -49,29 +51,41 @@ document.addEventListener('sticky-header-on', () => {
   pageHeader.classList.add('page-header--sticky')
   headerContent.classList.add('page-header__inner--sticky')
   gsap.to(downRowHeader, {
+    position: 'absolute',
+    y: -20,
+    opacity: 0,
+    duration: 0.3,
     display: 'none',
-    duration: 0
   })
   gsap.to(upRowHeader, {
+    position: 'absolute',
+    y: 20,
+    opacity: 0,
+    duration: 0.3,
     display: 'none',
-    duration: 0
   })
 })
 
 document.addEventListener('sticky-header-off', () => {
   isSticky = false
-  gsap.fromTo(downRowHeader, {
-    y: -60,
-    opacity: 0,
-    duration: 0.3
-  },{display: '', y: '',
-  opacity: 1,})
-  gsap.fromTo(upRowHeader, {
-    y: 60,
-    opacity: 0,
-    duration: 0.3
-  }, {display: '',y: '',
-  opacity: 1,})
+  gsap.fromTo(
+    downRowHeader,
+    {
+      y: -60,
+      opacity: 0,
+      duration: 0.3,
+    },
+    { display: '', y: '', opacity: 1, position: '' }
+  )
+  gsap.fromTo(
+    upRowHeader,
+    {
+      y: 60,
+      opacity: 0,
+      duration: 0.3,
+    },
+    { display: '', y: '', opacity: 1, position: '' }
+  )
 
   pageHeader.classList.remove('page-header--sticky')
   headerContent.classList.remove('page-header__inner--sticky')
