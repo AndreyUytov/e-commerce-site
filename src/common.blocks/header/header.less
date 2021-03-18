@@ -9,6 +9,8 @@
   box-shadow: 0px 4px 8px rgba(54, 78, 76, 0.08),
     0px 4px 16px rgba(54, 78, 76, 0.06);
   will-change: transform, contents;
+
+  z-index: 9999;
 }
 
 .page-header__inner {
@@ -70,10 +72,12 @@
 .menu-site__inner {
   display: none;
 
-  position: absolute;
+  position: fixed;
   top: 76px;
+  left: 0px;
   width: 100vw;
   height: calc(100vh - 120px);
+  padding-left: 16px;
   grid-template-rows: [start]auto [end]auto;
   place-content: start;
   overflow-y: auto;
@@ -171,6 +175,7 @@
 
   .menu-site__inner {
     position: static;
+    padding-left: 0px;
 
     width: 100%;
     height: auto;
