@@ -11,46 +11,50 @@
     ${require('./common.blocks/header/header.html')}
 
     <main class="page-main">
-      <section class="page-main__banner">
-        <ul class="banner__carousel-list list">
-          <li
-            class="banner__carousel-item"
-            style="background-image: url(${require('./common.blocks/banner/img/banner-mob.png')});"
-          ></li>
-          <li
-            class="banner__carousel-item"
-            style="background-image: url(${require('./common.blocks/banner/img/banner-mob.png')});"
-          ></li>
-          <li
-            class="banner__carousel-item"
-            style="background-image: url(${require('./common.blocks/banner/img/banner-mob.png')});"
-          ></li>
-          <li
-            class="banner__carousel-item"
-            style="background-image: url(${require('./common.blocks/banner/img/banner-mob.png')});"
-          ></li>
-        </ul>
+      <section class="banner-wrapper">
+        <div class="page-main__banner">
+          <ul class="banner__carousel-list list">
+            <li
+              class="banner__carousel-item"
+              style="background-image: url(${require('./common.blocks/banner/img/banner-mob.png')});"
+            ></li>
+            <li
+              class="banner__carousel-item"
+              style="background-image: url(${require('./common.blocks/banner/img/banner-mob.png')});"
+            ></li>
+            <li
+              class="banner__carousel-item"
+              style="background-image: url(${require('./common.blocks/banner/img/banner-mob.png')});"
+            ></li>
+            <li
+              class="banner__carousel-item"
+              style="background-image: url(${require('./common.blocks/banner/img/banner-mob.png')});"
+            ></li>
+          </ul>
 
-        <ul class="banner__controll-list list">
-          <li class="banner__controll-item banner__controll-item--active"></li>
-          <li class="banner__controll-item"></li>
-          <li class="banner__controll-item"></li>
-          <li class="banner__controll-item"></li>
-        </ul>
-
-        <ul class="banner__controll-snaps-list list">
-          <li class="banner__controll-snaps-item">
+          <ul class="banner__controll-list list">
+            <li
+              class="banner__controll-item banner__controll-item--active"
+            ></li>
+            <li class="banner__controll-item"></li>
+            <li class="banner__controll-item"></li>
+            <li class="banner__controll-item"></li>
+          </ul>
+        </div>
+        <ul class="banner-wrapper__controll-snaps-list list">
+          <li class="banner-wrapper__controll-snaps-item">
             <button
-              class="snap banner__controll-snap banner__controll-snap--left"
+              class="button banner-wrapper__controll-snap banner-wrapper__controll-snap--left"
+              disabled
             >
               <svg width="22" height="22">
                 <use href="#right-arrow" />
               </svg>
             </button>
           </li>
-          <li class="banner__controll-snaps-item">
+          <li class="banner-wrapper__controll-snaps-item">
             <button
-              class="snap banner__controll-snap banner__controll-snap--right"
+              class="button banner-wrapper__controll-snap banner-wrapper__controll-snap--right"
             >
               <svg width="22" height="22">
                 <use href="#right-arrow" />

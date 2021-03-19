@@ -71,7 +71,7 @@
   }
 }
 
-.banner__controll-snaps-list {
+.banner-wrapper__controll-snaps-list {
   display: none;
 }
 
@@ -81,14 +81,16 @@
   .page-main__banner {
     position: relative;
 
-    width: 100%;
+    width: 84vw;
+    min-width: 1100px;
+    margin: 0 auto;
     margin-bottom: 72px;
 
     display: flex;
     justify-content: flex-start;
     align-items: center;
 
-    overflow: hidden;
+    overflow: visible;
   }
 
   .banner__carousel-list {
@@ -103,21 +105,10 @@
   }
 
   .banner__carousel-item {
-    width: 83.3vw;
+    width: 84vw;
+    min-width: 1100px;
     height: 468px;
     margin-right: 24px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.08)),
-      drop-shadow(0px 16px 32px rgba(0, 0, 0, 0.08));
-    border-radius: 10px;
-
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
   }
 
   .banner__controll-list {
@@ -150,7 +141,47 @@
     }
   }
 
-  .banner__controll-snaps-list {
-    display: none;
+  .banner-wrapper {
+    position: relative;
+  }
+
+  .banner-wrapper__controll-snaps-list {
+    display: block;
+  }
+
+  .banner-wrapper__controll-snap {
+    position: absolute;
+    top: 50%;
+    width: 56px;
+    height: 56px;
+    padding: 0px;
+
+    background-color: #ffffff;
+    transform: translateY(-50%);
+    border-radius: 28px;
+
+    &:hover {
+      --svg-fill: #ffffff;
+    }
+    &:active {
+      --svg-fill: #ffffff;
+      transform: translateY(-47%);
+    }
+    &:disabled {
+      --svg-fill: rgba(0, 0, 0, 0.3);
+      cursor: auto;
+      pointer-events: none;
+    }
+  }
+
+  .banner-wrapper__controll-snap--left {
+    left: 16px;
+    & svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  .banner-wrapper__controll-snap--right {
+    right: 16px;
   }
 }
