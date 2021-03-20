@@ -31,17 +31,14 @@ const headerContent = document.querySelector('.page-header__inner')
 let isSticky = false
 document.addEventListener('scroll', () => {
   if (document.documentElement.clientWidth < 1100) return
-  console.log('scroll')
 
   if (window.pageYOffset > 48 && !isSticky) {
     document.dispatchEvent(new CustomEvent('sticky-header-on'))
-    console.log('sticky-on')
   }
 
   if (window.pageYOffset < 48 && isSticky) {
     document.dispatchEvent(new CustomEvent('sticky-header-off'))
     isSticky = false
-    console.log('sticky-off')
   }
 })
 

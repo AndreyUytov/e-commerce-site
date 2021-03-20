@@ -1,11 +1,7 @@
 /* eslint-disable */
 
-import gsap from 'gsap'
-import { Draggable } from 'gsap/Draggable'
-
 import Slider from './../slider/slider.js'
 
-gsap.registerPlugin(Draggable)
 
 const bannerContainer = document.querySelector('.page-main__banner')
 const bannerList = bannerContainer.querySelector('.banner__carousel-list')

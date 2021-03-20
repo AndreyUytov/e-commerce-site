@@ -216,11 +216,14 @@ input[type='radio'].visually-hidden {
 }
 
 .link {
-  color: inherit;
-  text-decoration: underline;
+  color: var(--akcentColor);
+  text-decoration: none;
 
   &:hover {
-    text-decoration: none;
+    color: var(--akcentColorHover);
+  }
+  &:active {
+    color: var(--akcentColorActive);
   }
 }
 
