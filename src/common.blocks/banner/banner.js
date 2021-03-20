@@ -22,6 +22,39 @@ const bannerSnapRight = document.querySelector(
 
 let currentSlide = 0 //1st Slide = 0, 2st Slide = 1
 
+const myDraggable = new Draggable(bannerList, {
+  type: 'x',
+  bounds: bannerContainer,
+  edgeResistance: 0.65,
+  zIndexBoost: false,
+  onDragEnd: function() {
+    let step = stepInPixels(bannerListItem)
+    let isToggle =
+      Math.abs((Math.abs(this.startX) - Math.abs(this.x)) / step) >= 0.2
+        ? true
+        : false
+
+    let direction = this.getDirection('start')
+
+    if (direction === 'right' && isToggle && currentSlide !== 0) {
+      currentSliderUpdater(currentSlide - 1, this, step)
+      
+    } else if (
+      direction === 'left' &&
+      isToggle &&
+      currentSlide !== slidersLength - 1
+    ) {
+      currentSliderUpdater(currentSlide + 1, this, step)
+    } else {
+      gsap.to(this.target, {
+        x: this.startX,
+        duration: 0.3,
+      })
+    }
+  },
+})
+
+
 const stepInPixels = (bannerListItem) => {
   let bannerItemWidth = bannerListItem.offsetWidth
   let marginRightBannerItem = parseInt(
@@ -32,7 +65,7 @@ const stepInPixels = (bannerListItem) => {
   return step
 }
 
-const currentSliderUpdater = (nextSlideIndex) => {
+const currentSliderUpdater = (nextSlideIndex, contextDraggable, step) => {
   if (nextSlideIndex > 0 && nextSlideIndex < slidersLength - 1) {
     bannerSnapLeft.disabled = false
     bannerSnapRight.disabled = false
@@ -53,35 +86,42 @@ const currentSliderUpdater = (nextSlideIndex) => {
   bannerControllsCircles[nextSlideIndex].classList.add(
     'banner__controll-item--active'
   )
-  currentSlide = nextSlideIndex
+  
 
-  gsap.from(bannerControllsCircles[currentSlide], {
+  gsap.from(bannerControllsCircles[nextSlideIndex], {
     scale: 1.4,
     duration: 0.3,
   })
+
+  gsap.to(contextDraggable.target, {
+    x: -nextSlideIndex * step,
+    duration: 0.3,
+    onStart:  () => {
+      contextDraggable.disable()
+      bannerSnapRight.style.pointerEvents = "none"
+      bannerSnapLeft.style.pointerEvents = "none"
+    },
+    onComplete: () => {
+      contextDraggable.enable()
+      bannerSnapRight.style.pointerEvents = ""
+      bannerSnapLeft.style.pointerEvents = ""
+    }
+  })
+
+  currentSlide = nextSlideIndex
 }
 
 bannerSnapRight.addEventListener('click', () => {
   if (currentSlide !== slidersLength - 1) {
     let step = stepInPixels(bannerListItem)
-    let currentSlidePosistion = gsap.getProperty(bannerList, 'x')
-    gsap.to(bannerList, {
-      x: currentSlidePosistion - step,
-      duration: 0.3,
-    })
-    currentSliderUpdater(currentSlide + 1)
+    currentSliderUpdater(currentSlide + 1, myDraggable, step)
   }
 })
 
 bannerSnapLeft.addEventListener('click', () => {
   if (currentSlide !== 0) {
     let step = stepInPixels(bannerListItem)
-    let currentSlidePosistion = gsap.getProperty(bannerList, 'x')
-    gsap.to(bannerList, {
-      x: currentSlidePosistion + step,
-      duration: 0.3,
-    })
-    currentSliderUpdater(currentSlide - 1)
+    currentSliderUpdater(currentSlide - 1, myDraggable, step)
   }
 })
 
@@ -91,47 +131,8 @@ window.addEventListener('resize', () => {
       x: 0,
       duration: 0.3,
     })
-
-    currentSliderUpdater(0)
+    let step = stepInPixels(bannerListItem)
+    currentSliderUpdater(0, myDraggable, step)
   }
 })
 
-Draggable.create(bannerList, {
-  type: 'x',
-  bounds: bannerContainer,
-  edgeResistance: 0.65,
-  zIndexBoost: false,
-  onDragEnd: function() {
-    let step = stepInPixels(bannerListItem)
-    let isToggle =
-      Math.abs((Math.abs(this.startX) - Math.abs(this.x)) / step) >= 0.2
-        ? true
-        : false
-
-    // currentSlide = Math.floor(Math.abs(this.startX) / step)
-    let direction = this.getDirection('start')
-
-    if (direction === 'right' && isToggle && currentSlide !== 0) {
-      currentSliderUpdater(currentSlide - 1)
-      gsap.to(this.target, {
-        x: -currentSlide * step,
-        duration: 0.3,
-      })
-    } else if (
-      direction === 'left' &&
-      isToggle &&
-      currentSlide !== slidersLength - 1
-    ) {
-      currentSliderUpdater(currentSlide + 1)
-      gsap.to(this.target, {
-        x: -currentSlide * step,
-        duration: 0.3,
-      })
-    } else {
-      gsap.to(this.target, {
-        x: this.startX,
-        duration: 0.3,
-      })
-    }
-  },
-})
