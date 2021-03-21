@@ -67,14 +67,14 @@
 
       <section class="short-catalog content">
         <h2 class="short-catalog__title">
-          <span class="short-catalog__title--active">
+          <button class="short-catalog__title-link short-catalog__title-link--active">
             Украшения из золота
-          </span>
-          <span class="short-catalog__title">
+          </button>
+          <button class="short-catalog__title-link">
             Украшения из серебра
-          </span>
+          </button>
         </h2>
-        <ul class="short-catalog__list">
+        <ul class="short-catalog__list list">
           <li class="short-catalog__item">
             <a href="#" class="short-catalog__link">
               <img src="${require('./common.blocks/short-catalog/img/1.png')}" />
@@ -85,7 +85,7 @@
           </li>
           <li class="short-catalog__item">
             <a href="#" class="short-catalog__link">
-              <img src="${require('./common.blocks/short-catalog/img/1.png')}" />
+              <img src="${require('./common.blocks/short-catalog/img/2.png')}" />
               <span class="short-catalog__link-text">
                 Украшения для детей
               </span>
@@ -93,7 +93,7 @@
           </li>
           <li class="short-catalog__item">
             <a href="#" class="short-catalog__link">
-              <img src="${require('./common.blocks/short-catalog/img/1.png')}" />
+              <img src="${require('./common.blocks/short-catalog/img/3.png')}" />
               <span class="short-catalog__link-text">
                 Украшения для детей
               </span>
@@ -101,7 +101,7 @@
           </li>
           <li class="short-catalog__item">
             <a href="#" class="short-catalog__link">
-              <img src="${require('./common.blocks/short-catalog/img/1.png')}" />
+              <img src="${require('./common.blocks/short-catalog/img/4.png')}" />
               <span class="short-catalog__link-text">
                 Украшения для детей
               </span>
@@ -109,7 +109,7 @@
           </li>
           <li class="short-catalog__item">
             <a href="#" class="short-catalog__link">
-              <img src="${require('./common.blocks/short-catalog/img/1.png')}" />
+              <img src="${require('./common.blocks/short-catalog/img/5.png')}" />
               <span class="short-catalog__link-text">
                 Украшения для детей
               </span>
@@ -117,7 +117,7 @@
           </li>
           <li class="short-catalog__item">
             <a href="#" class="short-catalog__link">
-              <img src="${require('./common.blocks/short-catalog/img/1.png')}" />
+              <img src="${require('./common.blocks/short-catalog/img/6.png')}" />
               <span class="short-catalog__link-text">
                 Украшения для детей
               </span>
@@ -125,7 +125,7 @@
           </li>
           <li class="short-catalog__item">
             <a href="#" class="short-catalog__link">
-              <img src="${require('./common.blocks/short-catalog/img/1.png')}" />
+              <img src="${require('./common.blocks/short-catalog/img/7.png')}" />
               <span class="short-catalog__link-text">
                 Украшения для детей
               </span>
@@ -133,13 +133,52 @@
           </li>
           <li class="short-catalog__item">
             <a href="#" class="short-catalog__link">
-              <img src="${require('./common.blocks/short-catalog/img/1.png')}" />
+              <img src="${require('./common.blocks/short-catalog/img/8.png')}" />
               <span class="short-catalog__link-text">
                 Украшения для детей
               </span>
             </a>
           </li>
         </ul>
+      </section>
+
+      <section class="present-products">
+        <div class="present-products__novelty">
+          <div class="novelty__header">
+            <h2 class="novelty__title">
+              Новинки
+            </h2>
+            ${require('./common.blocks/controll-counter/controll-counter.html')}
+          </div>
+          <ul class="novelty__list list">
+            <li class="present-card">
+              <a href="#" class="present-card__link">
+                <button class="present-card__snap snap">
+                  <span class="visually-hidden">
+                    Добавить в избранное
+                  </span>
+                </button>
+                <img class="present-card__img" src="${require('./common.blocks/present-product/img/1.png')}" />
+                <div class="present-card__subtitle">
+                  <h4 class="present-card__subtitle-name">
+                    Серьги
+                  </h4>
+                  <span class="present-card__subtitle-value">
+                    23424-40-23
+                  </span>
+                </div>
+                <h3 class="present-card__title">
+                  Magic Stone
+                </h3>
+                <div class="present-card__action">
+                  <span class="present-card__action-text">
+                    купи два, на каждое -50%
+                  </span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
       </section>
     </main>
   </body>
