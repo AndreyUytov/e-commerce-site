@@ -1,0 +1,20 @@
+.present-products {
+  padding-top: 72px;
+  margin-bottom: 72px;
+
+  background: linear-gradient(to bottom, #f1f0f5 81%, #ffffff 81%);
+}
+
+.present-products__novelty {
+  grid-column: content;
+
+  overflow: hidden;
+}
+
+.novelty__list {
+  width: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(282px, 3fr));
+  grid-auto-flow: column;
+  grid-gap: 22px;
+}
