@@ -13,8 +13,14 @@
 
 .novelty__list {
   width: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(282px, 3fr));
-  grid-auto-flow: column;
-  grid-gap: 22px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.present-card {
+  width: 25%;
+  flex-shrink: 0;
+  margin-right: 24px;
+  border: 1px gray solid;
 }
