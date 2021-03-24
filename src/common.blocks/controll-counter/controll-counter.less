@@ -1,0 +1,51 @@
+.controlls-counter-list {
+  width: 130px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.controlls-counter-list__item {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.controlls-counter-list__current-count {
+  color: #000000;
+}
+
+.controlls-counter-list__all-count {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.controlls-counter-list__btn {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 28px;
+  background: #ffffff;
+
+  &--prev svg {
+    transform: rotate(180deg);
+  }
+
+  &:hover {
+    background: var(--akcentColorHover);
+    --svg-fill: #ffffff;
+  }
+
+  &:active {
+    background: var(--akcentColorActive);
+  }
+  &:disabled {
+    --svg-fill: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+  }
+}
