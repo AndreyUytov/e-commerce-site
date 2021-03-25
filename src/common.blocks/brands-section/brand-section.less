@@ -1,0 +1,26 @@
+.brands-section {
+  padding: 56px 0px;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.brands-section__list {
+  grid-column: content;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
+  grid-gap: 16px;
+  place-content: center;
+}
+
+@media (min-width: 1100px) {
+  .brands-section {
+    padding: 72px 0px;
+  }
+
+  .brands-section__list {
+    grid-gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
