@@ -1,6 +1,6 @@
 .present-products {
-  padding-top: 72px;
-  margin-bottom: 72px;
+  padding-top: 56px;
+  margin-bottom: 56px;
 
   background: linear-gradient(to bottom, #f1f0f5 81%, #ffffff 81%);
 }
@@ -12,7 +12,7 @@
 }
 
 .novelty__header {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 
   display: flex;
   justify-content: space-between;
@@ -22,14 +22,14 @@
 .novelty__title {
   font-style: normal;
   font-weight: normal;
-  font-size: 32px;
-  line-height: 39px;
+  font-size: 24px;
+  line-height: 29px;
   color: #000000;
 }
 
 .novelty__list {
-  margin-right: -24px;
-  margin-bottom: 58px;
+  margin-right: -16px;
+  margin-bottom: 56px;
   width: auto;
   display: flex;
   flex-wrap: nowrap;
@@ -47,8 +47,8 @@
 
 .present-card__wrapper {
   position: relative;
-  margin-right: 24px;
-  padding: 16px;
+  margin-right: 16px;
+  padding: 12px;
 
   display: flex;
   flex-direction: column;
@@ -70,21 +70,6 @@
 
     transition: all 0.2s ease-in-out;
   }
-
-  &:hover {
-    &::before {
-      height: calc(100% + 56px);
-      border: 1px solid var(--akcentColor);
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08),
-        0px 16px 32px rgba(0, 0, 0, 0.08);
-    }
-
-    & .present-card__buy-button {
-      transform: translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
 }
 
 .present-card__header {
@@ -95,7 +80,7 @@
 }
 
 .present-card__header > * {
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   display: flex;
 }
 
@@ -107,24 +92,26 @@
   width: 100%;
   margin-bottom: 6px;
 
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
 
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 12px;
+  line-height: 16px;
   color: rgba(0, 0, 0, 0.3);
 
   &-name {
     font-weight: normal;
+    margin-bottom: 6px;
   }
 }
 
 .present-card__title {
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
-  line-height: 26px;
+  font-size: 14px;
+  line-height: 20px;
   color: #000000;
 }
 
@@ -160,8 +147,8 @@
 .present-card__old-price {
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 18px;
+  line-height: 22px;
 
   color: rgba(0, 0, 0, 0.3);
   text-decoration: line-through;
@@ -169,22 +156,16 @@
 
 .present-card__price {
   font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 29px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
   color: #000000;
 }
 
 .present-card__buy-button {
-  position: absolute;
-  top: 100%;
-  transform: translateY(100%);
-  width: calc(100% - 32px);
+  width: 100%;
   margin-bottom: 0px;
   margin-top: 6px;
-  transition: transform 0.1s ease-in-out;
-  opacity: 0;
-  pointer-events: none;
 }
 
 .present-card__buy-button-svg {
@@ -207,5 +188,139 @@
 
   &--active {
     --fill-svg: var(--akcentColor);
+  }
+}
+
+@media (min-width: 1110px) {
+  .present-products {
+    padding-top: 72px;
+    margin-bottom: 72px;
+  }
+
+  .novelty__header {
+    margin-bottom: 32px;
+  }
+
+  .novelty__title {
+    font-size: 32px;
+    line-height: 39px;
+  }
+
+  .novelty__list {
+    margin-right: -24px;
+    margin-bottom: 58px;
+  }
+
+  .present-card__wrapper {
+    margin-right: 24px;
+    padding: 16px;
+
+    &:hover {
+      &::before {
+        height: calc(100% + 56px);
+        border: 1px solid var(--akcentColor);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.08),
+          0px 16px 32px rgba(0, 0, 0, 0.08);
+      }
+
+      & .present-card__buy-button {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+  }
+
+  .present-card__buy-button {
+    position: absolute;
+    top: 100%;
+    transform: translateY(100%);
+    width: calc(100% - 32px);
+    margin-bottom: 0px;
+    margin-top: 6px;
+    transition: transform 0.1s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .present-card__header > * {
+    margin-bottom: 12px;
+    display: flex;
+  }
+
+  .present-card__link-img {
+    align-self: center;
+  }
+
+  .present-card__subtitle {
+    width: 100%;
+    margin-bottom: 6px;
+
+    justify-content: space-between;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.3);
+
+    &-name {
+      font-weight: normal;
+    }
+  }
+
+  .present-card__title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    color: #000000;
+  }
+
+  .present-card__action {
+    padding: 2px 8px;
+
+    display: block;
+    border-radius: 4px;
+    background-color: #eb3d30;
+
+    & span {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 16px;
+      color: #ffffff;
+    }
+  }
+
+  .present-card__footer {
+    margin-top: auto;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    & > * {
+      margin-bottom: 6px;
+    }
+  }
+
+  .present-card__old-price {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+
+    color: rgba(0, 0, 0, 0.3);
+    text-decoration: line-through;
+  }
+
+  .present-card__price {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
   }
 }
