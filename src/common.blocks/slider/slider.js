@@ -17,6 +17,21 @@ export default class SliderCreator {
     this.nextButton = config.nextButton
     this.currentSlide = 0
 
+    this.sliderList.addEventListener('wheel', (evt) => {
+      evt.preventDefault()
+      if(evt.deltaY > 0) {
+        if (this.currentSlide !== this.sliderLength - 1) {
+          let step = this.stepInPixels()
+          this.currentSliderUpdater(this.currentSlide + 1, step)
+        }
+      } else if (evt.deltaY < 0) {
+        if (this.currentSlide !== 0) {
+          let step = this.stepInPixels()
+          this.currentSliderUpdater(this.currentSlide - 1, step)
+        }
+      }
+    })
+
     this.nextButton.addEventListener('click', () => {
       if (this.currentSlide !== this.sliderLength - 1) {
         let step = this.stepInPixels()
