@@ -17,21 +17,6 @@ export default class SliderCreator {
     this.nextButton = config.nextButton
     this.currentSlide = 0
 
-    this.sliderList.addEventListener('wheel', (evt) => {
-      evt.preventDefault()
-      if(evt.deltaY > 0) {
-        if (this.currentSlide !== this.sliderLength - 1) {
-          let step = this.stepInPixels()
-          this.currentSliderUpdater(this.currentSlide + 1, step)
-        }
-      } else if (evt.deltaY < 0) {
-        if (this.currentSlide !== 0) {
-          let step = this.stepInPixels()
-          this.currentSliderUpdater(this.currentSlide - 1, step)
-        }
-      }
-    })
-
     this.nextButton.addEventListener('click', () => {
       if (this.currentSlide !== this.sliderLength - 1) {
         let step = this.stepInPixels()
@@ -69,10 +54,11 @@ export default class SliderCreator {
           Math.abs((Math.abs(this.draggable.startX) - Math.abs(this.draggable.x)) / step) >= 0.2
             ? true
             : false
-    
+
         let direction = this.draggable.getDirection('start')
     
         if (direction === 'right' && isToggle && this.currentSlide !== 0) {
+
           this.currentSliderUpdater(this.currentSlide - 1, step)
           
         } else if (
@@ -80,11 +66,12 @@ export default class SliderCreator {
           isToggle &&
           this.currentSlide !== this.sliderLength - 1
         ) {
+
           this.currentSliderUpdater(this.currentSlide + 1, step)
         } else {
           gsap.to(this.draggable.target, {
             x: this.draggable.startX,
-            duration: 0.3,
+
           })
         }
       },
@@ -97,7 +84,6 @@ export default class SliderCreator {
       getComputedStyle(this.slide).marginRight
     )
     let step = bannerItemWidth + marginRightBannerItem
-  
     return step
   }
 
