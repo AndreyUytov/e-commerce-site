@@ -1,5 +1,10 @@
 /* eslint-disable */
 
+import {
+  animate,
+  back
+} from './../animate/animate.js'
+
 export default class {
   constructor (config) {
     this.container = config.container
@@ -30,7 +35,15 @@ export default class {
         moveAt(evt)
       }
     
-      const mouseUp = () => {
+      const mouseUp = (evt) => {
+        animate({
+          duration: 500,
+          timing: back,
+          draw: (proggress) => {
+            
+            this.sliderList.style.transform = `translateX(${proggress}px)`
+          }
+        })
         this.sliderList.removeEventListener('pointermove', mouseMove)
         this.sliderList.removeEventListener('pointerup', mouseUp)  
       }
