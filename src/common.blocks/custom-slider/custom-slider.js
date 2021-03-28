@@ -2,8 +2,11 @@
 
 import {
   animate,
-  back
+  back,
+  makeToZero
 } from './../animate/animate.js'
+
+let makeBackToZero = makeToZero(back)
 
 export default class {
   constructor (config) {
@@ -16,6 +19,7 @@ export default class {
     this.nextButton = config.nextButton
 
     this.startX = null
+    this.currentX = null
 
     this.sliderList.ondragstart = () => false
     this.sliderList.style.touchAction = 'none'
@@ -25,10 +29,10 @@ export default class {
       this.startX = evt.clientX
       this.sliderList.setPointerCapture(evt.pointerId)
       let shiftX = evt.clientX - this.sliderList.getBoundingClientRect().left
-    
+
       const moveAt = (evt) => {
-        let newX = evt.clientX - shiftX - this.container.getBoundingClientRect().left
-        this.sliderList.style.transform = `translateX(${newX}px)`
+        this.currentX = evt.clientX - shiftX - this.container.getBoundingClientRect().left
+        this.sliderList.style.transform = `translateX(${this.currentX}px)`
       }
       
       const mouseMove = (evt) => {
@@ -36,14 +40,28 @@ export default class {
       }
     
       const mouseUp = (evt) => {
-        animate({
-          duration: 500,
-          timing: back,
-          draw: (proggress) => {
-            
-            this.sliderList.style.transform = `translateX(${proggress}px)`
-          }
-        })
+        if (this.currentX > 0) {
+          animate({
+            duration: 500,
+            draw: (progress) => {
+              this.sliderList.style.transform = `translateX(${progress * evt.clientX}px)`
+            },
+            timing: makeBackToZero
+          })
+        }
+
+        console.log(this.step() * this.sliderItemsLength, this.currentX);
+
+        if(this.currentX < -this.step() * this.sliderItemsLength) {
+          animate({
+            duration: 500,
+            draw: (progress) => {
+              this.sliderList.style.transform = `translateX(${progress * -this.step() * this.sliderItemsLength}px)`
+            },
+            timing: back
+          })
+        }
+  
         this.sliderList.removeEventListener('pointermove', mouseMove)
         this.sliderList.removeEventListener('pointerup', mouseUp)  
       }
@@ -59,5 +77,12 @@ export default class {
         evt.stopPropagation()
       }
     }, true)
+  }
+
+  step() {
+    let marginItem = parseInt(getComputedStyle(this.sliderItem).marginRight)
+    let widthItem = this.sliderItem.offsetWidth
+
+    return marginItem + widthItem
   }
 }

@@ -40,3 +40,9 @@ export function makeEaseOut(timing) {
     return 1 - timing(1 - timeFraction);
   }
 }
+
+export function makeToZero(timing) {
+  return function(timeFraction) {
+    return  timing(1 - timeFraction);
+  }
+}
