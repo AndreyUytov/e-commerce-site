@@ -1,8 +1,10 @@
 /* eslint-disable */
 
-import { animate, back, makeToZero } from './../animate/animate.js'
+import { animate, back, makeToZero, makeEaseOut } from './../animate/animate.js'
 
 let makeBackToZero = makeToZero(back)
+
+let makeEasyOutBack = makeEaseOut(back)
 
 export default class {
   constructor(config) {
@@ -60,34 +62,18 @@ export default class {
           })
         }
 
-        console.log(
-          this.sliderList.children[
-            this.sliderItemsLength - 1
-          ].getBoundingClientRect().right + 'right edge last item',
-          this.container.getBoundingClientRect().width + 'width container',
-          this.currentX + 'current x',
-          this.step() + 'step',
-          this.sliderList.children[0].getBoundingClientRect().left +
-            'left edge 1st item',
-          `width list slider = ${this.step() * this.sliderItemsLength}`
-        )
+        console.log(this.getMaxX())
 
-        // if (
-        //   this.sliderList.children[
-        //     this.sliderItemsLength - 1
-        //   ].getBoundingClientRect().right <
-        //   this.container.getBoundingClientRect().right
-        // ) {
-        //   animate({
-        //     duration: 500,
-        //     draw: (progress) => {
-        //       this.sliderList.style.transform = `translateX(${progress *
-        //         -this.step() *
-        //         this.sliderItemsLength}px)`
-        //     },
-        //     timing: back,
-        //   })
-        // }
+        if (this.currentX < this.getMaxX()) {
+          animate({
+            duration: 500,
+            draw: (progress) => {
+              this.sliderList.style.transform = `translateX(${progress *
+                this.getMaxX()}px)`
+            },
+            timing: makeEasyOutBack,
+          })
+        }
 
         this.sliderList.removeEventListener('pointermove', mouseMove)
         this.sliderList.removeEventListener('pointerup', mouseUp)
@@ -103,5 +89,11 @@ export default class {
     let widthItem = this.sliderItem.offsetWidth
 
     return marginItem + widthItem
+  }
+
+  getMaxX() {
+    let widthContainer = this.container.getBoundingClientRect().width
+    let sliderListWidth = this.sliderItemsLength * this.step()
+    return widthContainer - sliderListWidth
   }
 }
