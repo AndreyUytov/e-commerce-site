@@ -6,8 +6,7 @@ const presentControll = document.querySelector('.novelty__controlls')
 const container = document.querySelector('.present-products__novelty')
 const cardList = container.querySelector('.novelty__list')
 const cardListItem = cardList.querySelector('.present-card')
-const cardListLength = cardList.querySelectorAll('.present-card')
-  .length
+const cardListLength = cardList.querySelectorAll('.present-card').length
 const snapLeft = presentControll.querySelector(
   '.controlls-counter-list__btn--prev'
 )
