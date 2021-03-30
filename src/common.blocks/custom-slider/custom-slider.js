@@ -1,10 +1,13 @@
 /* eslint-disable */
 
-import { animate, back, makeToZero, makeEaseOut } from './../animate/animate.js'
+import {
+  animate,
+  back,
+  makeToZero,
+  setupEndValue,
+} from './../animate/animate.js'
 
 let makeBackToZero = makeToZero(back)
-
-let makeEasyOutBack = makeEaseOut(back)
 
 export default class {
   constructor(config) {
@@ -62,16 +65,19 @@ export default class {
           })
         }
 
-        console.log(this.getMaxX())
+        console.log('--------Animate Start ------')
 
         if (this.currentX < this.getMaxX()) {
           animate({
             duration: 500,
             draw: (progress) => {
-              this.sliderList.style.transform = `translateX(${progress *
-                this.getMaxX()}px)`
+              this.sliderList.style.transform = `translateX(${setupEndValue(
+                this.currentX,
+                this.getMaxX(),
+                progress
+              )}px)`
             },
-            timing: makeEasyOutBack,
+            timing: makeBackToZero,
           })
         }
 

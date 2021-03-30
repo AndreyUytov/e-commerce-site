@@ -1,9 +1,7 @@
 /* eslint-disable */
 
-
-export function animate({timing, draw, duration}) {
-
-  let start = performance.now();
+export function animate({ timing, draw, duration }) {
+  let start = performance.now()
 
   requestAnimationFrame(function animate(time) {
     // timeFraction изменяется от 0 до 1
@@ -18,7 +16,6 @@ export function animate({timing, draw, duration}) {
     if (timeFraction < 1) {
       requestAnimationFrame(animate)
     }
-
   })
 }
 
@@ -37,12 +34,16 @@ export function bounce(timeFraction) {
 // принимает функцию расчёта времени и возрващает преобразованный вариант
 export function makeEaseOut(timing) {
   return function(timeFraction) {
-    return 1 - timing(1 - timeFraction);
+    return 1 - timing(1 - timeFraction)
   }
 }
 
 export function makeToZero(timing) {
   return function(timeFraction) {
-    return  timing(1 - timeFraction);
+    return timing(1 - timeFraction)
   }
+}
+
+export function setupEndValue(initValue, endValue, ratio) {
+  return (initValue - endValue) * ratio + endValue
 }
