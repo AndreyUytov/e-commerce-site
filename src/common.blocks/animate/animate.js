@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-export function animate({ timing, draw, duration }) {
+export function animate({ timing, draw, duration, callbackDone }) {
   let start = performance.now()
 
   requestAnimationFrame(function animate(time) {
@@ -15,6 +15,10 @@ export function animate({ timing, draw, duration }) {
 
     if (timeFraction < 1) {
       requestAnimationFrame(animate)
+    } else {
+      if (callbackDone) {
+        callbackDone()
+      }
     }
   })
 }
@@ -44,6 +48,8 @@ export function makeToZero(timing) {
   }
 }
 
+// При ratio 1 => 0 функция вернет значение от initValue до endValue,
+//  при ratio = 0 результат = endValue, при ratio = 1 результат = initValue
 export function setupEndValue(initValue, endValue, ratio) {
   return (initValue - endValue) * ratio + endValue
 }

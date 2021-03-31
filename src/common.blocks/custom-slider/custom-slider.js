@@ -21,6 +21,7 @@ export default class {
 
     this.startX = null
     this.currentX = null
+    this.distance = null
 
     this.sliderList.ondragstart = () => false
     this.sliderList.style.touchAction = 'none'
@@ -28,9 +29,9 @@ export default class {
     this.sliderList.addEventListener(
       'click',
       (evt) => {
-        let distance = Math.abs(this.startX - evt.clientX)
-        if (distance > 20) {
-          evt.preventDefault() // отмена действия по умолчанию, например по клике на ссылку в случае перемещения мыши более чем на 20 px
+        this.distance = Math.abs(this.startX - evt.clientX)
+        if (this.distance > 20) {
+          evt.preventDefault()
           evt.stopPropagation()
         }
       },
@@ -53,8 +54,8 @@ export default class {
         moveAt(evt)
       }
 
-      const mouseUp = (evt) => {
-        if (this.currentX > 0) {
+      const mouseUp = () => {
+        if (this.isLeftEdge) {
           animate({
             duration: 500,
             draw: (progress) => {
@@ -62,12 +63,15 @@ export default class {
                 this.currentX}px)`
             },
             timing: makeBackToZero,
+            callbackDone: () => {
+              this.currentX = 0
+            },
           })
         }
 
         console.log('--------Animate Start ------')
 
-        if (this.currentX < this.getMaxX()) {
+        if (this.isRightEdge) {
           animate({
             duration: 500,
             draw: (progress) => {
@@ -78,6 +82,9 @@ export default class {
               )}px)`
             },
             timing: makeBackToZero,
+            callbackDone: () => {
+              this.currentX = this.getMaxX()
+            },
           })
         }
 
@@ -102,4 +109,14 @@ export default class {
     let sliderListWidth = this.sliderItemsLength * this.step()
     return widthContainer - sliderListWidth
   }
+
+  get isRightEdge() {
+    return this.currentX < this.getMaxX() ? true : false
+  }
+
+  get isLeftEdge() {
+    return this.currentX > 0 ? true : false
+  }
+
+  updateCurrentSlide() {}
 }
