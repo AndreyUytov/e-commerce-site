@@ -63,15 +63,8 @@ export default class {
                 this.currentX}px)`
             },
             timing: makeBackToZero,
-            callbackDone: () => {
-              this.currentX = 0
-            },
-          })
-        }
-
-        console.log('--------Animate Start ------')
-
-        if (this.isRightEdge) {
+          }).then(() => (this.currentX = 0))
+        } else if (this.isRightEdge) {
           animate({
             duration: 500,
             draw: (progress) => {
@@ -82,10 +75,9 @@ export default class {
               )}px)`
             },
             timing: makeBackToZero,
-            callbackDone: () => {
-              this.currentX = this.getMaxX()
-            },
-          })
+          }).then(() => (this.currentX = this.getMaxX()))
+        } else {
+          this.updateCurrentX(this.currentX)
         }
 
         this.sliderList.removeEventListener('pointermove', mouseMove)
@@ -118,5 +110,21 @@ export default class {
     return this.currentX > 0 ? true : false
   }
 
-  updateCurrentSlide() {}
+  updateCurrentX(newX) {
+    let step = this.step()
+    let newPosition = Math.round(newX / step) * step
+    animate({
+      duration: 500,
+      draw: (progress) => {
+        this.sliderList.style.transform = `translateX(${setupEndValue(
+          this.currentX,
+          newPosition,
+          progress
+        )}px)`
+      },
+      timing: makeBackToZero,
+    }).then(() => {
+      this.currentX = newPosition
+    })
+  }
 }
