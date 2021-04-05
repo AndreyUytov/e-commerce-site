@@ -26,6 +26,47 @@ export default class {
     this.sliderList.ondragstart = () => false
     this.sliderList.style.touchAction = 'none'
 
+    this.nextButton.addEventListener('click', () => {
+      let nextSlidePosition = this.currentX - this.step()
+      if (!this.isRightEdge(nextSlidePosition)) {
+        this.updateCurrentX(nextSlidePosition)
+      } else {
+        animate({
+          duration: 500,
+          draw: (progress) => {
+            this.sliderList.style.transform = `translateX(${setupEndValue(
+              this.currentX,
+              this.getMaxX(),
+              progress
+            )}px)`
+          },
+          timing: makeBackToZero,
+        }).then(() => {
+          this.currentX = this.getMaxX()
+          this.nextButton.disabled = true
+        })
+      }
+    })
+
+    this.prevButton.addEventListener('click', () => {
+      let prevSliderPosition = this.currentX + this.step()
+      if (!this.isLeftEdge(prevSliderPosition)) {
+        this.updateCurrentX(prevSliderPosition)
+      } else {
+        animate({
+          duration: 500,
+          draw: (progress) => {
+            this.sliderList.style.transform = `translateX(${progress *
+              this.currentX}px)`
+          },
+          timing: makeBackToZero,
+        }).then(() => {
+          this.currentX = 0
+          this.prevButton.disabled = true
+        })
+      }
+    })
+
     this.sliderList.addEventListener(
       'click',
       (evt) => {
@@ -55,7 +96,7 @@ export default class {
       }
 
       const mouseUp = () => {
-        if (this.isLeftEdge) {
+        if (this.isLeftEdge(this.currentX)) {
           animate({
             duration: 500,
             draw: (progress) => {
@@ -64,7 +105,7 @@ export default class {
             },
             timing: makeBackToZero,
           }).then(() => (this.currentX = 0))
-        } else if (this.isRightEdge) {
+        } else if (this.isRightEdge(this.currentX)) {
           animate({
             duration: 500,
             draw: (progress) => {
@@ -102,12 +143,12 @@ export default class {
     return widthContainer - sliderListWidth
   }
 
-  get isRightEdge() {
-    return this.currentX < this.getMaxX() ? true : false
+  isRightEdge(value) {
+    return value < this.getMaxX() ? true : false
   }
 
-  get isLeftEdge() {
-    return this.currentX > 0 ? true : false
+  isLeftEdge(value) {
+    return value > 0 ? true : false
   }
 
   updateCurrentX(newX) {

@@ -17,6 +17,8 @@ const snapRight = presentControll.querySelector(
 const conf = {
   container,
   sliderList: cardList,
+  nextButton: snapRight,
+  prevButton: snapLeft,
 }
 
 const slider = new Slider(conf)
