@@ -23,7 +23,7 @@ export function animate({ timing, draw, duration }) {
   })
 }
 
-export function back(timeFraction, x = 1.5) {
+export function back(timeFraction, x = 1.7) {
   return Math.pow(timeFraction, 2) * ((x + 1) * timeFraction - x)
 }
 

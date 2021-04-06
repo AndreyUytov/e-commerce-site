@@ -31,17 +31,7 @@ export default class {
       if (!this.isRightEdge(nextSlidePosition)) {
         this.updateCurrentX(nextSlidePosition)
       } else {
-        animate({
-          duration: 500,
-          draw: (progress) => {
-            this.sliderList.style.transform = `translateX(${setupEndValue(
-              this.currentX,
-              this.getMaxX(),
-              progress
-            )}px)`
-          },
-          timing: makeBackToZero,
-        }).then(() => {
+        this.animationSlider(this.currentX, this.getMaxX()).then(() => {
           this.currentX = this.getMaxX()
           this.nextButton.disabled = true
         })
@@ -53,14 +43,7 @@ export default class {
       if (!this.isLeftEdge(prevSliderPosition)) {
         this.updateCurrentX(prevSliderPosition)
       } else {
-        animate({
-          duration: 500,
-          draw: (progress) => {
-            this.sliderList.style.transform = `translateX(${progress *
-              this.currentX}px)`
-          },
-          timing: makeBackToZero,
-        }).then(() => {
+        this.animationSlider(this.currentX, 0).then(() => {
           this.currentX = 0
           this.prevButton.disabled = true
         })
@@ -97,26 +80,11 @@ export default class {
 
       const mouseUp = () => {
         if (this.isLeftEdge(this.currentX)) {
-          animate({
-            duration: 500,
-            draw: (progress) => {
-              this.sliderList.style.transform = `translateX(${progress *
-                this.currentX}px)`
-            },
-            timing: makeBackToZero,
-          }).then(() => (this.currentX = 0))
+          this.animationSlider(this.currentX, 0).then(() => (this.currentX = 0))
         } else if (this.isRightEdge(this.currentX)) {
-          animate({
-            duration: 500,
-            draw: (progress) => {
-              this.sliderList.style.transform = `translateX(${setupEndValue(
-                this.currentX,
-                this.getMaxX(),
-                progress
-              )}px)`
-            },
-            timing: makeBackToZero,
-          }).then(() => (this.currentX = this.getMaxX()))
+          this.animationSlider(this.currentX, this.getMaxX()).then(
+            () => (this.currentX = this.getMaxX())
+          )
         } else {
           this.updateCurrentX(this.currentX)
         }
@@ -137,6 +105,20 @@ export default class {
     return marginItem + widthItem
   }
 
+  animationSlider(initValue, endValue) {
+    return animate({
+      duration: 500,
+      draw: (progress) => {
+        this.sliderList.style.transform = `translateX(${setupEndValue(
+          initValue,
+          endValue,
+          progress
+        )}px)`
+      },
+      timing: makeBackToZero,
+    })
+  }
+
   getMaxX() {
     let widthContainer = this.container.getBoundingClientRect().width
     let sliderListWidth = this.sliderItemsLength * this.step()
@@ -144,28 +126,25 @@ export default class {
   }
 
   isRightEdge(value) {
-    return value < this.getMaxX() ? true : false
+    return value < this.getMaxX()
+      ? (this.nextButton.disabled = true)
+      : (this.nextButton.disabled = false)
   }
 
   isLeftEdge(value) {
-    return value > 0 ? true : false
+    return value > 0
+      ? (this.prevButton.disabled = true)
+      : (this.prevButton.disabled = false)
   }
 
   updateCurrentX(newX) {
     let step = this.step()
     let newPosition = Math.round(newX / step) * step
-    animate({
-      duration: 500,
-      draw: (progress) => {
-        this.sliderList.style.transform = `translateX(${setupEndValue(
-          this.currentX,
-          newPosition,
-          progress
-        )}px)`
-      },
-      timing: makeBackToZero,
-    }).then(() => {
+
+    this.animationSlider(this.currentX, newPosition).then(() => {
       this.currentX = newPosition
+      this.prevButton.disabled = false
+      this.nextButton.disabled = false
     })
   }
 }
