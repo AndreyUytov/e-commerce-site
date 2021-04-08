@@ -18,24 +18,32 @@ export default class {
     this.$prevButton = config.prevButton
     this.$nextButton = config.nextButton
 
-    this.markerList = config.markerList
+    this.$markerList = config.markerList
+
     this.$currentCount = config.currentCount
     this.$total = config.totalCount
 
     this.startX = null
-    this.currentX = null
+    this._currentX = 0
+    this._currentSlide = 0
     this.distance = null
+
+    this.updateCounterSlider()
 
     this.$sliderList.ondragstart = () => false
     this.$sliderList.style.touchAction = 'none'
 
+    window.addEventListener('resize', () => {
+      this.updateCounterSlider()
+    })
+
     this.$nextButton.addEventListener('click', () => {
-      let nextSlidePosition = this.currentX - this.step()
+      let nextSlidePosition = this.currentX - this.step
       this.updateCurrentX(nextSlidePosition)
     })
 
     this.$prevButton.addEventListener('click', () => {
-      let prevSliderPosition = this.currentX + this.step()
+      let prevSliderPosition = this.currentX + this.step
       this.updateCurrentX(prevSliderPosition)
     })
 
@@ -81,8 +89,31 @@ export default class {
 
   get maxX() {
     let widthContainer = this.$container.getBoundingClientRect().width
-    let sliderListWidth = this.sliderItemsLength * this.step()
+    let sliderListWidth = this.sliderItemsLength * this.step
     return widthContainer - sliderListWidth
+  }
+
+  get step() {
+    let marginItem = parseInt(getComputedStyle(this.$sliderItem).marginRight)
+    let widthItem = this.$sliderItem.offsetWidth
+
+    return marginItem + widthItem
+  }
+
+  get currentX() {
+    return this._currentX
+  }
+
+  set currentX(value) {
+    this._currentX = value
+  }
+
+  get currentSlide() {
+    return this._currentSlide
+  }
+
+  set currentSlide(currentX) {
+    this._currentSlide = Math.abs(currentX / this.step)
   }
 
   isRightEdge(value) {
@@ -93,9 +124,17 @@ export default class {
     return value >= 0 ? true : false
   }
 
-  checkCounterSlider() {
+  updateMarkerList() {
+    if (this.$markerList) {
+      this.$markerList.children[this.currentSlide].classList.delete('active')
+      this.currentSlide = this.currentX
+      this.$markerList.children[this.currentSlide].classList.add('active')
+    }
+  }
+
+  updateCounterSlider() {
     if (this.$total && this.$currentCount) {
-      let step = this.step()
+      let step = this.step
       let hiddenSlides =
         this.sliderItemsLength -
         Math.ceil(this.$container.offsetWidth / step) +
@@ -103,10 +142,26 @@ export default class {
       this.$total.textContent = `/${hiddenSlides}`
       let slideNumber = Math.abs(Math.round(this.currentX / step)) + 1
       this.$currentCount.textContent = `${slideNumber}`
+      let fonSizeCurrentCount = parseInt(
+        getComputedStyle(this.$currentCount).fontSize
+      )
+      animate({
+        duration: 600,
+        timing: makeBackToZero,
+        draw: (progress) => {
+          this.$currentCount.style.fontSize = `${setupEndValue(
+            24,
+            fonSizeCurrentCount,
+            progress
+          )}px`
+        },
+      }).then(() => {
+        this.$currentCount.style.fontSize = ''
+      })
     }
   }
 
-  checkButtonsDisabled() {
+  updateButtonsDisabled() {
     if (this.isLeftEdge(this.currentX)) {
       this.$prevButton.disabled = true
     } else if (this.isRightEdge(this.currentX)) {
@@ -121,27 +176,22 @@ export default class {
     if (this.isLeftEdge(newX)) {
       this.animationSlider(this.currentX, 0).then(() => {
         this.currentX = 0
-        this.checkButtonsDisabled()
-        this.checkCounterSlider()
+        this.updateButtonsDisabled()
+        this.updateCounterSlider()
+        this.updateMarkerList()
       })
       return true
     } else if (this.isRightEdge(newX)) {
       this.animationSlider(this.currentX, this.maxX).then(() => {
         this.currentX = this.maxX
-        this.checkButtonsDisabled()
-        this.checkCounterSlider()
+        this.updateButtonsDisabled()
+        this.updateCounterSlider()
+        this.updateMarkerList()
       })
       return true
     } else {
       return false
     }
-  }
-
-  step() {
-    let marginItem = parseInt(getComputedStyle(this.$sliderItem).marginRight)
-    let widthItem = this.$sliderItem.offsetWidth
-
-    return marginItem + widthItem
   }
 
   animationSlider(initValue, endValue) {
@@ -160,13 +210,14 @@ export default class {
 
   updateCurrentX(newX) {
     if (!this.checkBounds(newX)) {
-      let step = this.step()
+      let step = this.step
       let newPosition = Math.round(newX / step) * step
 
       this.animationSlider(this.currentX, newPosition).then(() => {
         this.currentX = newPosition
-        this.checkButtonsDisabled()
-        this.checkCounterSlider()
+        this.updateButtonsDisabled()
+        this.updateCounterSlider()
+        this.updateMarkerList()
       })
     }
   }
