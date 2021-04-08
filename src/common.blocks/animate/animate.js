@@ -35,6 +35,10 @@ export function bounce(timeFraction) {
   }
 }
 
+export function penta(timeFraction) {
+  return Math.pow(timeFraction, 5)
+}
+
 // принимает функцию расчёта времени и возрващает преобразованный вариант
 export function makeEaseOut(timing) {
   return function(timeFraction) {

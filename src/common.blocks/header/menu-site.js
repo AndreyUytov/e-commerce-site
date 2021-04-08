@@ -1,6 +1,15 @@
 /* eslint-disable */
 
 import gsap from 'gsap'
+import {
+  animate,
+  back,
+  penta,
+  makeToZero,
+  setupEndValue,
+} from './../animate/animate.js'
+
+const backOut = makeToZero(back)
 
 const menuToggle = document.querySelector('.menu-site__toggle-snap')
 const menuInner = document.querySelector('.menu-site__inner')
@@ -18,9 +27,16 @@ if (menuToggle) {
       ? (pageHeader.style.boxShadow = 'none')
       : (pageHeader.style.boxShadow = '')
 
-    gsap.from(menuInner, {
-      x: -300,
-      duration: 0.3,
+    animate({
+      duration: 300,
+      timing: backOut,
+      draw: (proggres) => {
+        menuInner.style.transform = `translateX(${setupEndValue(
+          -300,
+          0,
+          proggres
+        )}px)`
+      },
     })
   })
 }
@@ -47,19 +63,44 @@ document.addEventListener('sticky-header-on', () => {
 
   pageHeader.classList.add('page-header--sticky')
   headerContent.classList.add('page-header__inner--sticky')
-  gsap.to(downRowHeader, {
-    position: 'absolute',
-    y: -20,
-    opacity: 0,
-    duration: 0.3,
-    display: 'none',
+  // gsap.to(downRowHeader, {
+  //   position: 'absolute',
+  //   y: -20,
+  //   opacity: 0,
+  //   duration: 0.3,
+  //   display: 'none',
+  // })
+  // gsap.to(upRowHeader, {
+  //   position: 'absolute',
+  //   y: 20,
+  //   opacity: 0,
+  //   duration: 0.3,
+  //   display: 'none',
+  // })
+
+  downRowHeader.style.position = `absolute`
+  upRowHeader.style.position = `absolute`
+
+  animate({
+    duration: 300,
+    timing: penta,
+    draw: (progress) => {
+      downRowHeader.style.transform = `translateY(${-20 * progress}px)`
+      downRowHeader.style.opacity = `${setupEndValue(1, 0, progress)}`
+    },
+  }).then(() => {
+    downRowHeader.style.display = 'none'
   })
-  gsap.to(upRowHeader, {
-    position: 'absolute',
-    y: 20,
-    opacity: 0,
-    duration: 0.3,
-    display: 'none',
+
+  animate({
+    duration: 300,
+    timing: penta,
+    draw: (progress) => {
+      upRowHeader.style.transform = `translateY(${50 * progress}px)`
+      upRowHeader.style.opacity = `${setupEndValue(1, 0, progress)}`
+    },
+  }).then(() => {
+    upRowHeader.style.display = 'none'
   })
 })
 
