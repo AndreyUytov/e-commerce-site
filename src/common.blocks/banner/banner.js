@@ -1,15 +1,11 @@
 /* eslint-disable */
 
-import Slider from './../slider/slider.js'
-
+import Slider from './../custom-slider/custom-slider.js'
 
 const bannerContainer = document.querySelector('.page-main__banner')
 const bannerList = bannerContainer.querySelector('.banner__carousel-list')
-const bannerListItem = bannerList.querySelector('.banner__carousel-item')
-const slidersLength = bannerList.querySelectorAll('.banner__carousel-item')
-  .length
-const bannerControllsCircles = bannerContainer.querySelectorAll(
-  '.banner__controll-item'
+const bannerControllsCircles = bannerContainer.querySelector(
+  '.banner__controll-list'
 )
 const bannerSnapLeft = document.querySelector(
   '.banner-wrapper__controll-snap--left'
@@ -19,13 +15,11 @@ const bannerSnapRight = document.querySelector(
 )
 
 const config = {
-  sliderWrapper: bannerContainer,
+  container: bannerContainer,
   sliderList: bannerList,
-  slide: bannerListItem,
-  sliderLength: slidersLength,
-  sliderMarkers: bannerControllsCircles,
+  markerList: bannerControllsCircles,
   prevButton: bannerSnapLeft,
-  nextButton: bannerSnapRight
+  nextButton: bannerSnapRight,
 }
 
 const sliderBanner = new Slider(config)

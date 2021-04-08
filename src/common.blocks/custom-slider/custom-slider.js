@@ -112,8 +112,8 @@ export default class {
     return this._currentSlide
   }
 
-  set currentSlide(currentX) {
-    this._currentSlide = Math.abs(currentX / this.step)
+  updateCurrentSlide() {
+    this._currentSlide = Math.floor(Math.abs(this.currentX / this.step))
   }
 
   isRightEdge(value) {
@@ -126,9 +126,9 @@ export default class {
 
   updateMarkerList() {
     if (this.$markerList) {
-      this.$markerList.children[this.currentSlide].classList.delete('active')
-      this.currentSlide = this.currentX
-      this.$markerList.children[this.currentSlide].classList.add('active')
+      this.$markerList.children[this.currentSlide].classList.remove('active')
+      this.updateCurrentSlide()
+      this.$markerList.children[`${this.currentSlide}`].classList.add('active')
     }
   }
 
