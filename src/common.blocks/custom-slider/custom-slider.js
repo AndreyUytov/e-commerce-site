@@ -98,7 +98,7 @@ export default class {
       let step = this.step()
       let hiddenSlides =
         this.sliderItemsLength -
-        Math.floor(this.$container.offsetWidth / step) +
+        Math.ceil(this.$container.offsetWidth / step) +
         1
       this.$total.textContent = `/${hiddenSlides}`
       let slideNumber = Math.abs(Math.round(this.currentX / step)) + 1
