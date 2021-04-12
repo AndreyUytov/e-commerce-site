@@ -1,10 +1,8 @@
 /* eslint-disable */
 
-import gsap from 'gsap'
 import {
   animate,
   back,
-  penta,
   makeToZero,
   setupEndValue,
 } from './../animate/animate.js'
@@ -63,67 +61,16 @@ document.addEventListener('sticky-header-on', () => {
 
   pageHeader.classList.add('page-header--sticky')
   headerContent.classList.add('page-header__inner--sticky')
-  // gsap.to(downRowHeader, {
-  //   position: 'absolute',
-  //   y: -20,
-  //   opacity: 0,
-  //   duration: 0.3,
-  //   display: 'none',
-  // })
-  // gsap.to(upRowHeader, {
-  //   position: 'absolute',
-  //   y: 20,
-  //   opacity: 0,
-  //   duration: 0.3,
-  //   display: 'none',
-  // })
 
-  downRowHeader.style.position = `absolute`
-  upRowHeader.style.position = `absolute`
-
-  animate({
-    duration: 300,
-    timing: penta,
-    draw: (progress) => {
-      downRowHeader.style.transform = `translateY(${-20 * progress}px)`
-      downRowHeader.style.opacity = `${setupEndValue(1, 0, progress)}`
-    },
-  }).then(() => {
-    downRowHeader.style.display = 'none'
-  })
-
-  animate({
-    duration: 300,
-    timing: penta,
-    draw: (progress) => {
-      upRowHeader.style.transform = `translateY(${50 * progress}px)`
-      upRowHeader.style.opacity = `${setupEndValue(1, 0, progress)}`
-    },
-  }).then(() => {
-    upRowHeader.style.display = 'none'
-  })
+  upRowHeader.style.display = 'none'
+  downRowHeader.style.display = 'none'
 })
 
 document.addEventListener('sticky-header-off', () => {
   isSticky = false
-  gsap.fromTo(
-    downRowHeader,
-    {
-      y: -60,
-      opacity: 0,
-      duration: 0.3,
-    },
-    { display: '', y: '', opacity: 1, position: '' }
-  )
-  gsap.fromTo(
-    upRowHeader,
-    {
-      y: 60,
-      opacity: 0,
-      duration: 0.3,
-    },
-    { display: '', y: '', opacity: 1, position: '' }
-  )
+
+  upRowHeader.style.display = ''
+  downRowHeader.style.display = ''
 
   pageHeader.classList.remove('page-header--sticky')
   headerContent.classList.remove('page-header__inner--sticky')
