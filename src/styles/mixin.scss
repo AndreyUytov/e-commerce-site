@@ -1,0 +1,84 @@
+@mixin h1-title {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat-Bold';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 56px;
+
+  color: inherit;
+}
+
+@mixin h2-title {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat-Bold';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 40px;
+
+  color: inherit;
+}
+
+@mixin h3-title {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat-Bold';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 32px;
+
+  color: inherit;
+}
+
+@mixin h4-title {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat-Bold';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: inherit;
+}
+
+@mixin p2 {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: inherit;
+}
+
+@mixin p3 {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+
+  color: inherit;
+}
+
+@mixin before-highlighter {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  width: 56px;
+  height: 16px;
+
+  background-color: var(--akcentColor);
+  z-index: -1;
+}

@@ -1,276 +1,164 @@
 const webpack = require('webpack')
+const fs = require('fs')
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const autoprefixer = require('autoprefixer')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const cssnano = require('cssnano')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-const WebpackBuildNotifierPlugin = require('webpack-build-notifier')
-const PostCssInlineSvg = require('postcss-inline-svg')
-const PostCssSvgo = require('postcss-svgo')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const isDevelopment =
-  !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+function generateHtmlPlugins(templateDir) {
+  const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir))
+  return templateFiles.map((item) => {
+    const parts = item.split('.')
+    const name = parts[0]
+    const extension = parts[1]
+    return new HtmlWebpackPlugin({
+      filename: `${name}.html`,
+      template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
+      inject: true,
+    })
+  })
+}
 
-const autoprefixerConfig = { browsers: ['last 5 versions', 'ie 11'] }
-const postCssConfig = [
-  autoprefixer(autoprefixerConfig),
-  PostCssInlineSvg,
-  PostCssSvgo,
-]
+const htmlPlugins = generateHtmlPlugins('./src/pages/views')
 
-const lessOptions = { sourceMap: isDevelopment }
+module.exports = (env) => {
+  const isProduction = env.production === true
 
-module.exports = {
-  entry: {
-    // vendor: ['./src/vendor/index.js'],
-    common: ['./src/index.js'],
-  },
-  output: {
-    path: path.resolve(__dirname, './public'),
-    publicPath: '/',
-    //   filename: isDevelopment ? '[name].js' : '[name]-[chunkhash:10].js'
-    filename: 'js/[name].js',
-  },
-  externals: {
-    jquery: 'jQuery',
-    $: 'jQuery',
-  },
-  resolve: {
-    alias: {
-      vue$: 'vue/dist/vue.esm.js',
-      'jquery-ui': 'jquery-ui/ui/widgets',
-      'jquery-ui-css': 'jquery-ui/../../themes/base',
-      '@': path.resolve(__dirname, './src'),
+  return {
+    mode: isProduction ? 'production' : 'development',
+    entry: {
+      index: './src/index.js',
     },
-    symlinks: false,
-  },
-  watch: isDevelopment,
-  devtool: isDevelopment ? 'inline-source-map' : false,
-  devServer: {
-    contentBase: path.join(__dirname, 'src/static/'),
-    noInfo: isDevelopment,
-    overlay: {
-      warnings: true,
-      errors: true,
+    output: {
+      path: path.join(__dirname, 'dist'),
+      publicPath: './',
+      filename: isProduction ? 'js/[name][hash].js' : 'js/[name].js',
     },
-    quiet: true,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        // exclude: /node_modules/,
-        loaders: [
-          'babel-loader',
-          {
-            loader: 'eslint-loader',
-            options: {
-              emitError: true,
-              failOnWarning: !isDevelopment,
-              failOnError: true,
-            },
-          },
-        ],
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
       },
+    },
 
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            less: ExtractTextPlugin.extract({
-              use: [
-                {
-                  loader: 'css-loader',
-                  options: lessOptions,
-                },
-                {
-                  loader: 'less-loader',
-                  options: lessOptions,
-                },
-              ],
-              fallback: 'vue-style-loader', // <- это внутренняя часть vue-loader, поэтому нет необходимости его устанавливать через NPM
-            }),
-          },
-          postcss: postCssConfig,
-          // other vue-loader options go here
-        },
-      },
+    devtool: isProduction ? '' : 'source-map',
 
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          use: 'css-loader',
-          fallback: 'style-loader',
-        }),
-      },
+    devServer: {
+      publicPath: '/',
+      openPage: 'index.html',
+      // hot: !isProduction
+    },
 
-      {
-        test: /\.(html)$/,
-        use: {
-          loader: 'html-loader', // https://github.com/webpack-contrib/html-loader
-          options: {
-            // attrs: [':data-src'],
-            interpolate: true, // добавляет возможность вставлять в аттрибуты
-            // элементов картинки через ES6 string interpolation синтаксис
-          },
-        },
-      },
+    plugins: [
+      new CleanWebpackPlugin(),
+      new MiniCssExtractPlugin({
+        filename: isProduction ? '[hash].css' : 'index.css',
+      }),
+      new webpack.HotModuleReplacementPlugin(),
+      ...htmlPlugins,
+    ],
 
-      {
-        test: /\.(png|jpe?g|gif)$/,
-        loaders: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'img/',
-            },
-          },
-          // 'img-loader',
-        ],
-      },
-
-      {
-        test: /\.(svg)$/,
-        include: [path.resolve(__dirname, './src/common.blocks')],
-        loaders: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'img/',
-            },
-          },
-          'img-loader',
-        ],
-      },
-
-      {
-        test: /\.(svg|eot|ttf|woff|woff2)$/,
-        exclude: [
-          path.resolve(__dirname, './src/assets/svg'),
-          path.resolve(__dirname, './src/common.blocks'),
-        ],
-        loaders: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/',
-            },
-          },
-        ],
-      },
-
-      {
-        test: /\.svg$/,
-        include: [path.resolve(__dirname, './src/assets/svg/multicolor')],
-        loaders: [
-          {
-            loader: 'svg-sprite-loader',
-          },
-          {
-            loader: 'svgo-loader',
-          },
-        ],
-      },
-
-      {
-        test: /\.svg$/,
-        include: [path.resolve(__dirname, './src/assets/svg/monocolor')],
-        loaders: [
-          {
-            loader: 'svg-sprite-loader',
-          },
-          {
-            loader: 'svgo-loader',
-            options: {
-              plugins: [
-                { removeUselessStrokeAndFill: true },
-                { removeAttrs: { attrs: '(fill|id|fill-opacity)' } },
-                { removeStyleElement: true },
-              ],
-            },
-          },
-        ],
-      },
-
-      {
-        test: /\.less$/,
-        use: ExtractTextPlugin.extract({
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
           use: [
             {
-              loader: 'css-loader',
-              options: lessOptions,
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env'],
+                plugins: [
+                  '@babel/plugin-transform-runtime',
+                  '@babel/plugin-proposal-class-properties',
+                ],
+              },
+            },
+          ],
+        },
+        {
+          test: /\.scss$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                hmr: !isProduction,
+                reloadAll: true,
+                sourceMap: !isProduction,
+              },
             },
             {
-              loader: 'less-loader',
-              options: lessOptions,
+              loader: 'css-loader',
+              options: {
+                sourceMap: !isProduction,
+              },
             },
             {
               loader: 'postcss-loader',
               options: {
-                plugins() {
-                  return postCssConfig
+                postcssOptions: {
+                  plugins: [
+                    (() => {
+                      if (isProduction) {
+                        return autoprefixer(), cssnano()
+                      } else return autoprefixer()
+                    })(),
+                  ],
+                },
+                sourceMap: !isProduction,
+              },
+            },
+            {
+              loader: 'resolve-url-loader',
+              options: {
+                sourceMap: !isProduction,
+              },
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true, // always true for work resolve-url-loader!!!
+              },
+            },
+          ],
+        },
+        {
+          test: /\.(png|jpe?g|gif|woff|woff2|ttf|svg|webp)$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: () => {
+                  if (isProduction) {
+                    return '[contenthash].[ext]'
+                  } else return '[name].[ext]'
+                },
+                outputPath: (url, resourcePath) => {
+                  if (/svg/.test(resourcePath)) {
+                    return `img/svg/${url}`
+                  }
+                  if (/images/.test(resourcePath)) {
+                    return `img/${url}`
+                  }
+                  if (/fonts/.test(resourcePath)) {
+                    return `fonts/${url}`
+                  }
                 },
               },
             },
           ],
-          fallback: 'style-loader',
-        }),
-      },
-    ],
-  },
-  plugins: [
-    new CleanWebpackPlugin(['public'], {
-      root: __dirname,
-      verbose: true,
-      dry: false,
-    }),
-    new webpack.NoEmitOnErrorsPlugin(), // otherwise error still gives a file
-    new ExtractTextPlugin('css/[name].css'),
-    new FriendlyErrorsWebpackPlugin(),
-    new WebpackBuildNotifierPlugin({
-      suppressSuccess: true,
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: !isDevelopment,
-    }),
-    new CopyWebpackPlugin([{ from: 'src/static' }], {
-      ignore: ['*.md'],
-    }),
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      // chunksSortMode: 'manual',
-      // chunks: ['vendor', 'common'],
-    }),
-    // для добавления отдельной html страницы нужно подключить новый HtmlWebpackPlugin
-    /* new HtmlWebpackPlugin({
-      template: 'src/test.html',
-      filename: 'test.html',
-      // chunksSortMode: 'manual',
-      // chunks: ['vendor', 'common'],
-    }), */
-  ],
-}
-
-if (!isDevelopment) {
-  module.exports.plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false,
-      },
-    })
-  )
-  module.exports.plugins.push(
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: "'production'",
-      },
-    })
-  )
+        },
+        {
+          test: /\.html$/i,
+          include: path.resolve(__dirname, 'src/pages/includes'),
+          use: [
+            {
+              loader: 'html-loader',
+            },
+          ],
+        },
+      ],
+    },
+  }
 }

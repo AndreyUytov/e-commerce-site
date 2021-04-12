@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./img/logo-blue.ico" type="image/icon" />
+    <title>Дорожные знаки</title>
+  </head>
+  <body>
+    <%=_.template(require('./../includes/svg-sprite.html'))() %>
+    <%=_.template(require('./../includes/header.html'))() %>
+
+    <main class="page-main">
+      <section class="banner-wrapper">
+        <div class="page-main__banner">
+          <ul class="banner__carousel-list list">
+            <li class="banner__carousel-item"></li>
+            <li class="banner__carousel-item"></li>
+            <li class="banner__carousel-item"></li>
+            <li class="banner__carousel-item"></li>
+          </ul>
+
+          <ul class="banner__controll-list list">
+            <li class="banner__controll-item active"></li>
+            <li class="banner__controll-item"></li>
+            <li class="banner__controll-item"></li>
+            <li class="banner__controll-item"></li>
+          </ul>
+        </div>
+        <ul class="banner-wrapper__controll-snaps-list list">
+          <li class="banner-wrapper__controll-snaps-item">
+            <button
+              class="button banner-wrapper__controll-snap banner-wrapper__controll-snap--left"
+              disabled
+            >
+              <svg width="22" height="22">
+                <use href="#right-arrow" />
+              </svg>
+            </button>
+          </li>
+          <li class="banner-wrapper__controll-snaps-item">
+            <button
+              class="button banner-wrapper__controll-snap banner-wrapper__controll-snap--right"
+            >
+              <svg width="22" height="22">
+                <use href="#right-arrow" />
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <section class="short-catalog content">
+        <h2 class="short-catalog__title">
+          <button
+            class="short-catalog__title-link short-catalog__title-link--active"
+          >
+            Украшения из золота
+          </button>
+          <button class="short-catalog__title-link">
+            Украшения из серебра
+          </button>
+        </h2>
+        <ul class="short-catalog__list list">
+          <li class="short-catalog__item">
+            <a href="#" class="short-catalog__link">
+              <img src="./../../images/1s.png" />
+              <span class="short-catalog__link-text">
+                Украшения для детей
+              </span>
+            </a>
+          </li>
+          <li class="short-catalog__item">
+            <a href="#" class="short-catalog__link">
+              <img src="./../../images/2s.png" />
+              <span class="short-catalog__link-text">
+                Украшения для детей
+              </span>
+            </a>
+          </li>
+          <li class="short-catalog__item">
+            <a href="#" class="short-catalog__link">
+              <img src="./../../images/3s.png" />
+              <span class="short-catalog__link-text">
+                Украшения для детей
+              </span>
+            </a>
+          </li>
+          <li class="short-catalog__item">
+            <a href="#" class="short-catalog__link">
+              <img src="./../../images/4s.png" />
+              <span class="short-catalog__link-text">
+                Украшения для детей
+              </span>
+            </a>
+          </li>
+          <li class="short-catalog__item">
+            <a href="#" class="short-catalog__link">
+              <img src="./../../images/5s.png" />
+              <span class="short-catalog__link-text">
+                Украшения для детей
+              </span>
+            </a>
+          </li>
+          <li class="short-catalog__item">
+            <a href="#" class="short-catalog__link">
+              <img src="./../../images/6s.png" />
+              <span class="short-catalog__link-text">
+                Украшения для детей
+              </span>
+            </a>
+          </li>
+          <li class="short-catalog__item">
+            <a href="#" class="short-catalog__link">
+              <img src="./../../images/7s.png" />
+              <span class="short-catalog__link-text">
+                Украшения для детей
+              </span>
+            </a>
+          </li>
+          <li class="short-catalog__item">
+            <a href="#" class="short-catalog__link">
+              <img src="./../../images/8s.png" />
+              <span class="short-catalog__link-text">
+                Украшения для детей
+              </span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="present-products content">
+        <div class="present-products__novelty">
+          <div class="novelty__header">
+            <h2 class="novelty__title">Новинки</h2>
+            <div class="novelty__controlls">
+              <%=_.template(require('./../includes/controll-counter.html'))() %>
+            </div>
+          </div>
+          <ul class="novelty__list list">
+            <li class="present-card">
+              <div class="present-card__wrapper">
+                <button
+                  class="present-card__snap present-card__snap--active snap"
+                >
+                  <svg width="20" height="20" class="present-card__snap-svg">
+                    <use href="#favorite" />
+                  </svg>
+                  <span class="visually-hidden"> Добавить в избранное </span>
+                </button>
+                <div class="present-card__header">
+                  <a href="#" class="present-card__link-img">
+                    <img
+                      class="present-card__img"
+                      src="./../../images/1p.png"
+                    />
+                  </a>
+                  <div class="present-card__subtitle">
+                    <h4 class="present-card__subtitle-name">Серьги</h4>
+                    <span class="present-card__subtitle-value">
+                      23424-40-23
+                    </span>
+                  </div>
+                  <a href="#" class="present-card__link">
+                    <h3 class="present-card__title">Magic Stone</h3>
+                  </a>
+                  <div class="present-card__action">
+                    <span>купи два, на каждое -50%</span>
+                  </div>
+                </div>
+                <div class="present-card__footer">
+                  <p class="present-card__price">33 666 ₽</p>
+                  <button class="present-card__buy-button button">
+                    <svg class="present-card__buy-button-svg">
+                      <use href="#shopping-bag" />
+                    </svg>
+                    <span class="present-card__buy-button-text">
+                      В корзину
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+            <li class="present-card">
+              <div class="present-card__wrapper">
+                <button class="present-card__snap snap">
+                  <svg width="20" height="20" class="present-card__snap-svg">
+                    <use href="#favorite" />
+                  </svg>
+                  <span class="visually-hidden"> Добавить в избранное </span>
+                </button>
+                <div class="present-card__header">
+                  <a href="#" class="present-card__link-img">
+                    <img
+                      class="present-card__img"
+                      src="${require('./common.blocks/present-product/img/1p.png')}"
+                    />
+                  </a>
+                  <div class="present-card__subtitle">
+                    <h4 class="present-card__subtitle-name">Серьги</h4>
+                    <span class="present-card__subtitle-value">
+                      23424-40-23
+                    </span>
+                  </div>
+                  <a href="#" class="present-card__link">
+                    <h3 class="present-card__title">Magic Stone</h3>
+                  </a>
+                  <div class="present-card__action">
+                    <span>купи два, на каждое -50%</span>
+                  </div>
+                </div>
+                <div class="present-card__footer">
+                  <p class="present-card__old-price">56 111 ₽</p>
+                  <p class="present-card__price">33 666 ₽</p>
+                  <button class="present-card__buy-button button">
+                    <svg class="present-card__buy-button-svg">
+                      <use href="#shopping-bag" />
+                    </svg>
+                    <span class="present-card__buy-button-text">
+                      В корзину
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+            <li class="present-card">
+              <div class="present-card__wrapper">
+                <button class="present-card__snap snap">
+                  <svg width="20" height="20" class="present-card__snap-svg">
+                    <use href="#favorite" />
+                  </svg>
+                  <span class="visually-hidden"> Добавить в избранное </span>
+                </button>
+                <div class="present-card__header">
+                  <a href="#" class="present-card__link-img">
+                    <img
+                      class="present-card__img"
+                      src="${require('./common.blocks/present-product/img/1p.png')}"
+                    />
+                  </a>
+                  <div class="present-card__subtitle">
+                    <h4 class="present-card__subtitle-name">Серьги</h4>
+                    <span class="present-card__subtitle-value">
+                      23424-40-23
+                    </span>
+                  </div>
+                  <a href="#" class="present-card__link">
+                    <h3 class="present-card__title">Magic Stone</h3>
+                  </a>
+                </div>
+                <div class="present-card__footer">
+                  <p class="present-card__old-price">56 111 ₽</p>
+                  <p class="present-card__price">33 666 ₽</p>
+                  <button class="present-card__buy-button button">
+                    <svg class="present-card__buy-button-svg">
+                      <use href="#shopping-bag" />
+                    </svg>
+                    <span class="present-card__buy-button-text">
+                      В корзину
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+            <li class="present-card">
+              <div class="present-card__wrapper">
+                <button class="present-card__snap snap">
+                  <svg width="20" height="20" class="present-card__snap-svg">
+                    <use href="#favorite" />
+                  </svg>
+                  <span class="visually-hidden"> Добавить в избранное </span>
+                </button>
+                <div class="present-card__header">
+                  <a href="#" class="present-card__link-img">
+                    <img
+                      class="present-card__img"
+                      src="${require('./common.blocks/present-product/img/1p.png')}"
+                    />
+                  </a>
+                  <div class="present-card__subtitle">
+                    <h4 class="present-card__subtitle-name">Серьги</h4>
+                    <span class="present-card__subtitle-value">
+                      23424-40-23
+                    </span>
+                  </div>
+                  <a href="#" class="present-card__link">
+                    <h3 class="present-card__title">Magic Stone</h3>
+                  </a>
+                  <div class="present-card__action">
+                    <span>купи два, на каждое -50%</span>
+                  </div>
+                </div>
+                <div class="present-card__footer">
+                  <p class="present-card__old-price">56 111 ₽</p>
+                  <p class="present-card__price">33 666 ₽</p>
+                  <button class="present-card__buy-button button">
+                    <svg class="present-card__buy-button-svg">
+                      <use href="#shopping-bag" />
+                    </svg>
+                    <span class="present-card__buy-button-text">
+                      В корзину
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+            <li class="present-card">
+              <div class="present-card__wrapper">
+                <button class="present-card__snap snap">
+                  <svg width="20" height="20" class="present-card__snap-svg">
+                    <use href="#favorite" />
+                  </svg>
+                  <span class="visually-hidden"> Добавить в избранное </span>
+                </button>
+                <div class="present-card__header">
+                  <a href="#" class="present-card__link-img">
+                    <img
+                      class="present-card__img"
+                      src="${require('./common.blocks/present-product/img/1p.png')}"
+                    />
+                  </a>
+                  <div class="present-card__subtitle">
+                    <h4 class="present-card__subtitle-name">Серьги</h4>
+                    <span class="present-card__subtitle-value">
+                      23424-40-23
+                    </span>
+                  </div>
+                  <a href="#" class="present-card__link">
+                    <h3 class="present-card__title">Magic Stone</h3>
+                  </a>
+                  <div class="present-card__action">
+                    <span>купи два, на каждое -50%</span>
+                  </div>
+                </div>
+                <div class="present-card__footer">
+                  <p class="present-card__old-price">56 111 ₽</p>
+                  <p class="present-card__price">33 666 ₽</p>
+                  <button class="present-card__buy-button button">
+                    <svg class="present-card__buy-button-svg">
+                      <use href="#shopping-bag" />
+                    </svg>
+                    <span class="present-card__buy-button-text">
+                      В корзину
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+            <li class="present-card">
+              <div class="present-card__wrapper">
+                <button class="present-card__snap snap">
+                  <svg width="20" height="20" class="present-card__snap-svg">
+                    <use href="#favorite" />
+                  </svg>
+                  <span class="visually-hidden"> Добавить в избранное </span>
+                </button>
+                <div class="present-card__header">
+                  <a href="#" class="present-card__link-img">
+                    <img
+                      class="present-card__img"
+                      src="${require('./common.blocks/present-product/img/1p.png')}"
+                    />
+                  </a>
+                  <div class="present-card__subtitle">
+                    <h4 class="present-card__subtitle-name">Серьги</h4>
+                    <span class="present-card__subtitle-value">
+                      23424-40-23
+                    </span>
+                  </div>
+                  <a href="#" class="present-card__link">
+                    <h3 class="present-card__title">Magic Stone</h3>
+                  </a>
+                  <div class="present-card__action">
+                    <span>купи два, на каждое -50%</span>
+                  </div>
+                </div>
+                <div class="present-card__footer">
+                  <p class="present-card__old-price">56 111 ₽</p>
+                  <p class="present-card__price">33 666 ₽</p>
+                  <button class="present-card__buy-button button">
+                    <svg class="present-card__buy-button-svg">
+                      <use href="#shopping-bag" />
+                    </svg>
+                    <span class="present-card__buy-button-text">
+                      В корзину
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+            <li class="present-card">
+              <div class="present-card__wrapper">
+                <button class="present-card__snap snap">
+                  <svg width="20" height="20" class="present-card__snap-svg">
+                    <use href="#favorite" />
+                  </svg>
+                  <span class="visually-hidden"> Добавить в избранное </span>
+                </button>
+                <div class="present-card__header">
+                  <a href="#" class="present-card__link-img">
+                    <img
+                      class="present-card__img"
+                      src="${require('./common.blocks/present-product/img/1p.png')}"
+                    />
+                  </a>
+                  <div class="present-card__subtitle">
+                    <h4 class="present-card__subtitle-name">Серьги</h4>
+                    <span class="present-card__subtitle-value">
+                      23424-40-23
+                    </span>
+                  </div>
+                  <a href="#" class="present-card__link">
+                    <h3 class="present-card__title">Magic Stone</h3>
+                  </a>
+                  <div class="present-card__action">
+                    <span>купи два, на каждое -50%</span>
+                  </div>
+                </div>
+                <div class="present-card__footer">
+                  <p class="present-card__old-price">56 111 ₽</p>
+                  <p class="present-card__price">33 666 ₽</p>
+                  <button class="present-card__buy-button button">
+                    <svg class="present-card__buy-button-svg">
+                      <use href="#shopping-bag" />
+                    </svg>
+                    <span class="present-card__buy-button-text">
+                      В корзину
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+            <li class="present-card">
+              <div class="present-card__wrapper">
+                <button class="present-card__snap snap">
+                  <svg width="20" height="20" class="present-card__snap-svg">
+                    <use href="#favorite" />
+                  </svg>
+                  <span class="visually-hidden"> Добавить в избранное </span>
+                </button>
+                <div class="present-card__header">
+                  <a href="#" class="present-card__link-img">
+                    <img
+                      class="present-card__img"
+                      src="${require('./common.blocks/present-product/img/1p.png')}"
+                    />
+                  </a>
+                  <div class="present-card__subtitle">
+                    <h4 class="present-card__subtitle-name">Серьги</h4>
+                    <span class="present-card__subtitle-value">
+                      23424-40-23
+                    </span>
+                  </div>
+                  <a href="#" class="present-card__link">
+                    <h3 class="present-card__title">Magic Stone</h3>
+                  </a>
+                  <div class="present-card__action">
+                    <span>купи два, на каждое -50%</span>
+                  </div>
+                </div>
+                <div class="present-card__footer">
+                  <p class="present-card__old-price">56 111 ₽</p>
+                  <p class="present-card__price">33 666 ₽</p>
+                  <button class="present-card__buy-button button">
+                    <svg class="present-card__buy-button-svg">
+                      <use href="#shopping-bag" />
+                    </svg>
+                    <span class="present-card__buy-button-text">
+                      В корзину
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+            <li class="present-card">
+              <div class="present-card__wrapper">
+                <button class="present-card__snap snap">
+                  <svg width="20" height="20" class="present-card__snap-svg">
+                    <use href="#favorite" />
+                  </svg>
+                  <span class="visually-hidden"> Добавить в избранное </span>
+                </button>
+                <div class="present-card__header">
+                  <a href="#" class="present-card__link-img">
+                    <img
+                      class="present-card__img"
+                      src="${require('./common.blocks/present-product/img/1p.png')}"
+                    />
+                  </a>
+                  <div class="present-card__subtitle">
+                    <h4 class="present-card__subtitle-name">Серьги</h4>
+                    <span class="present-card__subtitle-value">
+                      23424-40-23
+                    </span>
+                  </div>
+                  <a href="#" class="present-card__link">
+                    <h3 class="present-card__title">Magic Stone</h3>
+                  </a>
+                  <div class="present-card__action">
+                    <span>купи два, на каждое -50%</span>
+                  </div>
+                </div>
+                <div class="present-card__footer">
+                  <p class="present-card__old-price">56 111 ₽</p>
+                  <p class="present-card__price">33 666 ₽</p>
+                  <button class="present-card__buy-button button">
+                    <svg class="present-card__buy-button-svg">
+                      <use href="#shopping-bag" />
+                    </svg>
+                    <span class="present-card__buy-button-text">
+                      В корзину
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="brands-section">
+        <div class="content">
+          <ul class="brands-section__list list">
+            <li class="brands-section__list-item">
+              <img
+                src="${require('./common.blocks/brands-section/img/1b.png')}"
+              />
+            </li>
+            <li class="brands-section__list-item">
+              <img
+                src="${require('./common.blocks/brands-section/img/2b.png')}"
+              />
+            </li>
+            <li class="brands-section__list-item">
+              <img
+                src="${require('./common.blocks/brands-section/img/3b.png')}"
+              />
+            </li>
+            <li class="brands-section__list-item">
+              <img
+                src="${require('./common.blocks/brands-section/img/4b.png')}"
+              />
+            </li>
+            <li class="brands-section__list-item">
+              <img
+                src="${require('./common.blocks/brands-section/img/1b.png')}"
+              />
+            </li>
+            <li class="brands-section__list-item">
+              <img
+                src="${require('./common.blocks/brands-section/img/2b.png')}"
+              />
+            </li>
+            <li class="brands-section__list-item">
+              <img
+                src="${require('./common.blocks/brands-section/img/3b.png')}"
+              />
+            </li>
+            <li class="brands-section__list-item">
+              <img
+                src="${require('./common.blocks/brands-section/img/4b.png')}"
+              />
+            </li>
+            <li class="brands-section__list-item">
+              <img
+                src="${require('./common.blocks/brands-section/img/1b.png')}"
+              />
+            </li>
+            <li class="brands-section__list-item">
+              <img
+                src="${require('./common.blocks/brands-section/img/2b.png')}"
+              />
+            </li>
+            <li class="brands-section__list-item">
+              <img
+                src="${require('./common.blocks/brands-section/img/3b.png')}"
+              />
+            </li>
+            <li class="brands-section__list-item">
+              <img
+                src="${require('./common.blocks/brands-section/img/4b.png')}"
+              />
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="about">
+        <img
+          class="about__img"
+          src="${require('./common.blocks/about/img/about.png')}"
+        />
+        <div class="about__inner">
+          <h3 class="about__title">Коротко о нас</h3>
+          <p class="about__desc">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam,
+            minus. Reiciendis eveniet, quae perspiciatis animi dicta accusantium
+            aspernatur error laboriosam sint blanditiis rem sit ratione.
+            Officiis, nobis nihil, est praesentium saepe enim odio quod
+            obcaecati rerum inventore ad beatae aliquid fugit soluta nisi
+            explicabo ab sequi ex voluptatum modi minus!
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <%= _.template(require('./../includes/footer.html'))() %>
+  </body>
+</html>

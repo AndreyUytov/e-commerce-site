@@ -1,0 +1,16 @@
+@import './normalize';
+@import './variables';
+@import './fonts';
+@import './scafolding';
+@import './mixin';
+@import './snippets';
+
+// blocks
+@import './blocks/header';
+@import './blocks/banner';
+@import './blocks/short-catalog';
+@import './blocks/brands';
+@import './blocks/controll-counter';
+@import './blocks/present';
+@import './blocks/about';
+@import './blocks/footer';
