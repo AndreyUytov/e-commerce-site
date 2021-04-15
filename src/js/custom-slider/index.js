@@ -21,10 +21,11 @@ export default class {
     this._currentSlide = 0
     this.distance = null
 
+    this.$sliderList.style.touchAction = 'pan-y'
+
     this.updateCounterSlider()
 
     this.$sliderList.ondragstart = () => false
-    this.$sliderList.style.touchAction = 'none'
 
     window.addEventListener('resize', () => {
       this.updateCounterSlider()
@@ -55,6 +56,7 @@ export default class {
     this.$sliderList.addEventListener('pointerdown', (evt) => {
       evt.preventDefault()
       this.startX = evt.clientX
+      this.startY = evt.clientY
 
       let shiftX = evt.clientX - this.$sliderList.getBoundingClientRect().left
 
@@ -70,7 +72,6 @@ export default class {
 
       const mouseUp = () => {
         this.updateCurrentX(this.currentX)
-
         document.removeEventListener('pointermove', mouseMove)
         document.removeEventListener('pointerup', mouseUp)
       }
