@@ -9,15 +9,17 @@ class CatalogMenu {
       '.catalog-popup__master-list'
     )
 
-    this.$catalogButton = document.querySelector('.menu-site__catalog-button')
+    this.$catalogButtons = document.querySelectorAll('.catalog-button')
 
     this.$activeFirstLevelItem = null
     this.$activeTwoLevelItem = null
 
     this.toggleVisibleBackButton()
 
-    this.$catalogButton.addEventListener('click', () => {
-      this.$wrapper.style.display = 'block'
+    this.$catalogButtons.forEach((el) => {
+      el.addEventListener('click', () => {
+        this.$wrapper.style.display = 'block'
+      })
     })
 
     this.$firstLevelList.addEventListener('click', (evt) => {
