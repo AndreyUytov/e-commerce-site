@@ -16,13 +16,11 @@ class CatalogMenu {
 
     this.toggleVisibleBackButton()
 
-    this.$catalogButtons.forEach((el) => {
-      el.addEventListener('click', () => {
-        this.$wrapper.style.display = 'block'
-      })
-    })
+    this.showCatalog = () => {
+      this.$wrapper.style.display = 'block'
+    }
 
-    this.$firstLevelList.addEventListener('click', (evt) => {
+    this.showSubmenu = (evt) => {
       if (!this.$activeFirstLevelItem) {
         let newActiveElem = evt.target.closest('.master-list__item')
 
@@ -38,9 +36,9 @@ class CatalogMenu {
         this.$activeTwoLevelItem = newActiveSubElem
         this.$activeTwoLevelItem.classList.add('active')
       }
-    })
+    }
 
-    this.$backButton.addEventListener('click', () => {
+    this.closeSubMenu = () => {
       if (this.$activeTwoLevelItem) {
         this.$activeTwoLevelItem.classList.remove('active')
         this.$activeTwoLevelItem = null
@@ -49,16 +47,26 @@ class CatalogMenu {
         this.$activeFirstLevelItem = null
         this.toggleVisibleBackButton()
       }
-    })
+    }
 
-    this.$closeButton.addEventListener('click', () => {
+    this.closePopup = () => {
       this.$activeTwoLevelItem?.classList.remove('active')
       this.$activeFirstLevelItem?.classList.remove('active')
       this.$activeFirstLevelItem = null
       this.$activeTwoLevelItem = null
       this.toggleVisibleBackButton()
       this.$wrapper.style.display = ''
+    }
+
+    this.$catalogButtons.forEach((el) => {
+      el.addEventListener('click', this.showCatalog)
     })
+
+    this.$firstLevelList.addEventListener('click', this.showSubmenu)
+
+    this.$backButton.addEventListener('click', this.closeSubMenu)
+
+    this.$closeButton.addEventListener('click', this.closePopup)
   }
 
   toggleVisibleBackButton() {
@@ -68,6 +76,46 @@ class CatalogMenu {
       this.$backButton.classList.add('show-back-button')
     }
   }
+
+  destroy() {
+    this.$catalogButtons.forEach((el) => {
+      el.removeEventListener('click', this.showCatalog)
+    })
+
+    this.$firstLevelList.removeEventListener('click', this.showSubmenu)
+
+    this.$backButton.removeEventListener('click', this.closeSubMenu)
+
+    this.$closeButton.removeEventListener('click', this.closePopup)
+
+    this.isDestroyed = true
+  }
+
+  init() {
+    this.$catalogButtons.forEach((el) => {
+      el.addEventListener('click', this.showCatalog)
+    })
+
+    this.$firstLevelList.addEventListener('click', this.showSubmenu)
+
+    this.$backButton.addEventListener('click', this.closeSubMenu)
+
+    this.$closeButton.addEventListener('click', this.closePopup)
+  }
 }
 
-const catalogMenu = new CatalogMenu()
+let catalogMenu
+
+if (document.documentElement.clientWidth < 1100) {
+  catalogMenu = new CatalogMenu()
+}
+
+window.addEventListener('resize', () => {
+  if (document.documentElement.clientWidth < 1100) {
+    catalogMenu?.isDestroyed
+      ? catalogMenu.init()
+      : (catalogMenu = new CatalogMenu())
+  } else {
+    catalogMenu.destroy()
+  }
+})
