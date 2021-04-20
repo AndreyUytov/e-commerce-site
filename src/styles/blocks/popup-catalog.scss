@@ -1,13 +1,47 @@
+@keyframes show-sublist {
+  from {
+    left: 100%;
+  }
+
+  to {
+    left: 16px;
+  }
+}
+
+@keyframes hide-sublist {
+  from {
+    left: 16px;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes show-backbutton {
+  from {
+    left: -100%;
+  }
+
+  to {
+    left: 0px;
+  }
+}
+
 .catalog-popup__wrapper {
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
 
   padding-top: 18px;
-  min-height: 100vh;
+  height: 100vh;
 
   background-color: #fff;
-  z-index: 9999;
+  z-index: 2000;
+
+  overflow-y: auto;
+
+  display: none;
 }
 
 .catalog-popup__controlls-wrapper {
@@ -22,7 +56,7 @@
   margin: 0;
   padding: 0;
 
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 
@@ -34,6 +68,14 @@
   &:hover {
     --svg-fill: var(--akcentColorHover);
   }
+}
+
+.show-back-button {
+  position: relative;
+
+  display: flex;
+
+  animation: show-backbutton 0.3s ease-in-out;
 }
 
 .catalog-popup__close-link {
@@ -93,6 +135,7 @@
   --svg-fill: rgba(0, 0, 0, 0.6);
 
   cursor: pointer;
+  outline: none;
   &:hover {
     --svg-fill: var(--akcentColorHover);
     color: var(--akcentColorHover);
@@ -111,9 +154,28 @@
   display: none;
 }
 
-.active > .category-list__wrapper,
 .active > .sub-list__wrapper {
+  position: absolute;
+  width: calc(100% - 32px);
+  top: 46px;
+  height: calc(100vh - 46px);
   display: block;
+  z-index: 3000;
+
+  background-color: #fff;
+  animation: show-sublist 0.3s ease-in-out;
+}
+
+.active > .category-list__wrapper {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  height: calc(100vh - 46px);
+  display: block;
+  z-index: 4000;
+
+  background-color: #fff;
+  animation: show-sublist 0.3s ease-in-out;
 }
 
 .sub-list__link {
@@ -132,6 +194,8 @@
   --svg-fill: rgba(0, 0, 0, 0.6);
 
   cursor: pointer;
+  outline: none;
+
   &:hover {
     --svg-fill: var(--akcentColorHover);
     color: var(--akcentColorHover);
