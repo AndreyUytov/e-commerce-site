@@ -58,15 +58,7 @@ class CatalogMenu {
       this.$wrapper.style.display = ''
     }
 
-    this.$catalogButtons.forEach((el) => {
-      el.addEventListener('click', this.showCatalog)
-    })
-
-    this.$firstLevelList.addEventListener('click', this.showSubmenu)
-
-    this.$backButton.addEventListener('click', this.closeSubMenu)
-
-    this.$closeButton.addEventListener('click', this.closePopup)
+    this.init()
   }
 
   toggleVisibleBackButton() {
@@ -87,13 +79,9 @@ class CatalogMenu {
     this.$backButton.removeEventListener('click', this.closeSubMenu)
 
     this.$closeButton.removeEventListener('click', this.closePopup)
-
-    this.isDestroyed = true
   }
 
   init() {
-    this.isDestroyed = false
-
     this.$catalogButtons.forEach((el) => {
       el.addEventListener('click', this.showCatalog)
     })
@@ -106,18 +94,71 @@ class CatalogMenu {
   }
 }
 
-let catalogMenu
+class BigCatalogMenu {
+  constructor() {
+    this.$catalogButton = document.querySelector(
+      '.search-block__catalog-button'
+    )
+    this.$wrapper = document.querySelector('.catalog-popup__wrapper')
+    this.$firstLevelList = this.$wrapper.querySelector(
+      '.catalog-popup__master-list'
+    )
+    this.$currentActiveElement = this.$firstLevelList.firstElementChild
+
+    this.showPopup = (evt) => {
+      this.$wrapper.style.display = 'block'
+      this.$catalogButton.firstElementChild.innerHTML = `<use href="#close" />`
+      this.$catalogButton.removeEventListener('click', this.showPopup)
+      this.$catalogButton.addEventListener('click', this.closePopup)
+    }
+
+    this.closePopup = (evt) => {
+      this.$wrapper.style.display = ''
+      this.$catalogButton.firstElementChild.innerHTML = `<use href="#burger" />`
+      this.$catalogButton.removeEventListener('click', this.closePopup)
+      this.$catalogButton.addEventListener('click', this.showPopup)
+    }
+
+    this.toggleActiveSublist = (evt) => {
+      let newActiveSubList = evt.target.closest('.master-list__item')
+
+      if (!newActiveSubList) return
+
+      this.$currentActiveElement.classList.remove('active')
+      newActiveSubList.classList.add('active')
+      this.$currentActiveElement = newActiveSubList
+    }
+
+    this.init()
+  }
+
+  init() {
+    this.$catalogButton.addEventListener('click', this.showPopup)
+    this.$currentActiveElement.classList.add('active')
+    this.$firstLevelList.addEventListener('click', this.toggleActiveSublist)
+  }
+
+  destroy() {
+    this.$catalogButton.removeEventListener('click', this.showPopup)
+    this.$currentActiveElement.classList.remove('active')
+    this.$firstLevelList.removeEventListener('click', this.toggleActiveSublist)
+  }
+}
+
+let menuCatalog
 
 if (document.documentElement.clientWidth < 1100) {
-  catalogMenu = new CatalogMenu()
+  menuCatalog = new CatalogMenu()
+} else {
+  menuCatalog = new BigCatalogMenu()
 }
 
 window.addEventListener('resize', () => {
   if (document.documentElement.clientWidth < 1100) {
-    catalogMenu?.isDestroyed
-      ? catalogMenu.init()
-      : (catalogMenu = new CatalogMenu())
+    menuCatalog.destroy()
+    menuCatalog = new CatalogMenu()
   } else {
-    catalogMenu?.destroy()
+    menuCatalog.destroy()
+    menuCatalog = new BigCatalogMenu()
   }
 })
