@@ -92,6 +92,8 @@ class CatalogMenu {
   }
 
   init() {
+    this.isDestroyed = false
+
     this.$catalogButtons.forEach((el) => {
       el.addEventListener('click', this.showCatalog)
     })
@@ -116,6 +118,6 @@ window.addEventListener('resize', () => {
       ? catalogMenu.init()
       : (catalogMenu = new CatalogMenu())
   } else {
-    catalogMenu.destroy()
+    catalogMenu?.destroy()
   }
 })
