@@ -39,11 +39,11 @@ let isSticky = false
 document.addEventListener('scroll', () => {
   if (document.documentElement.clientWidth < 1100) return
 
-  if (window.pageYOffset > 48 && !isSticky) {
+  if (window.pageYOffset > 37 && !isSticky) {
     document.dispatchEvent(new CustomEvent('sticky-header-on'))
   }
 
-  if (window.pageYOffset < 48 && isSticky) {
+  if (window.pageYOffset < 37 && isSticky) {
     document.dispatchEvent(new CustomEvent('sticky-header-off'))
     isSticky = false
   }
