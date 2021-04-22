@@ -1,0 +1,14 @@
+<section class="catalog-main__breadcrumbs breadcrumbs content">
+  <ul class="breadcrumbs__list list">
+    <% items.forEach((el) => { %>
+    <li class="breadcrumbs__list-item">
+      <a href="<%=el.href%>" class="breadcrumbs__list-link">
+        <%= el.name%>
+        <svg width="20" height="20">
+          <use href="#shevron-left" />
+        </svg>
+      </a>
+    </li>
+    <%})%>
+  </ul>
+</section>
