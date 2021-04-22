@@ -130,10 +130,12 @@ button {
 
   &:hover {
     background: var(--akcentColorHover);
+    color: #ffffff;
   }
   &:active {
     transform: translateY(1px);
     background: var(--akcentColorActive);
+    color: #ffffff;
   }
   &:disabled {
     opacity: 0.5;
@@ -148,6 +150,18 @@ button {
   }
   &:active {
     background-color: #b42e25;
+  }
+}
+
+.button--white-fon {
+  background-color: transparent;
+  color: var(--akcentColor);
+  border: 1px solid var(--akcentColor);
+  &:hover {
+    border: none;
+  }
+  &:active {
+    border: none;
   }
 }
 

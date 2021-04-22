@@ -163,13 +163,16 @@
   .page-header {
     position: sticky;
     height: 184px;
-    top: 0px;
+    top: -84px;
 
     padding: 12px 0;
     margin-bottom: 24px;
 
     box-shadow: none;
     background-color: transparent;
+
+    &--sticky {
+    }
   }
 
   .page-header__inner {
