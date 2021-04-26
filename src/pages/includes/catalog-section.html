@@ -4,5 +4,371 @@
     <p class="catalog-section__counter-items">Показано 654 изделия</p>
   </div>
 
-  <div class="catalog-section__filter-section"></div>
+  <div class="catalog-section__filter-section">
+    <button class="filter-section__close-snap snap">
+      <span class="visually-hidden"> Закрыть попап </span>
+      <svg width="28" height="28">
+        <use href="#close" />
+      </svg>
+    </button>
+
+    <h2 class="filter-section__title">Фильтры</h2>
+
+    <ul class="filter-section__shosen-filters-list list">
+      <li class="shosen-filters-list__item">
+        Золото
+        <button class="shosen-filters-list__delete-snap snap">
+          <span class="visually-hidden"> Удалить фильтр </span>
+          <svg width="20" height="20">
+            <use href="#close" />
+          </svg>
+        </button>
+      </li>
+      <li
+        class="shosen-filters-list__item shosen-filters-list__item--clear-all"
+      >
+        <button class="shosen-filters-list__clear-btn">Очистить все</button>
+      </li>
+    </ul>
+    <form class="filter-section__form">
+      <fieldset
+        class="filter-section__fieldset filter-section__fieldset--background"
+      >
+        <legend class="filter-section__legend">Категория</legend>
+        <label class="filter-section__label">
+          <input type="radio" name="radio" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <span class="filter-section__marker-radio"></span>
+          </span>
+          <span class="filter-section__label-info"> Браслеты </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="radio" name="radio" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <span class="filter-section__marker-radio"></span>
+          </span>
+          <span class="filter-section__label-info"> Кольца </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="radio" name="radio" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <span class="filter-section__marker-radio"></span>
+          </span>
+          <span class="filter-section__label-info"> Колье </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="radio" name="radio" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <span class="filter-section__marker-radio"></span>
+          </span>
+          <span class="filter-section__label-info"> Ионизаторы </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="radio" name="radio" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <span class="filter-section__marker-radio"></span>
+          </span>
+          <span class="filter-section__label-info"> Брошь </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="radio" name="radio" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <span class="filter-section__marker-radio"></span>
+          </span>
+          <span class="filter-section__label-info"> Серьги </span>
+        </label>
+      </fieldset>
+
+      <fieldset class="filter-section__fieldset">
+        <legend class="filter-section__legend">Цена</legend>
+        <div class="range__wrapper">
+          <span class="range__left-toggle"></span>
+          <span class="range__bar"></span>
+          <span class="range__right-toggle"></span>
+        </div>
+        <div class="filter-section__price-wrapper">
+          <label class="filter-section__price-label">
+            <input
+              type="text"
+              class="filter-section__price-input filter-section__price-input--min"
+            />
+          </label>
+          <label class="filter-section__price-label">
+            <input
+              type="text"
+              class="filter-section__price-input filter-section__price-input--max"
+            />
+          </label>
+        </div>
+      </fieldset>
+      <fieldset class="filter-section__fieldset">
+        <legend class="filter-section__legend">Бренд</legend>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Veronika </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Veronika </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Veronika </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Veronika </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Veronika </span>
+        </label>
+      </fieldset>
+
+      <fieldset class="filter-section__fieldset">
+        <legend class="filter-section__legend">Материал</legend>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Сталь </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Серебро </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Золото </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Платина </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Латунь </span>
+        </label>
+      </fieldset>
+
+      <fieldset class="filter-section__fieldset">
+        <legend class="filter-section__legend">Камень вставка</legend>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Султанит </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Бриллиант </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Изумруд </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Рубин </span>
+        </label>
+        <label class="filter-section__label">
+          <input type="checkbox" class="filter-section__input" />
+          <span class="filter-section__marker">
+            <svg width="20" height="20">
+              <use href="#checkbox" />
+            </svg>
+          </span>
+          <span class="filter-section__label-info"> Микс камней </span>
+        </label>
+      </fieldset>
+
+      <button type="submit" class="filter-section__submit">Применить</button>
+    </form>
+  </div>
+
+  <div class="subfilters-section">
+    <h3 class="subfilters-section__title">Фильтры</h3>
+
+    <ul class="filter-section__shosen-filters-list list">
+      <li class="shosen-filters-list__item">
+        Золото
+        <button class="shosen-filters-list__delete-snap snap">
+          <span class="visually-hidden"> Удалить фильтр </span>
+          <svg width="20" height="20">
+            <use href="#close" />
+          </svg>
+        </button>
+      </li>
+      <li
+        class="shosen-filters-list__item shosen-filters-list__item--clear-all"
+      >
+        <button class="shosen-filters-list__clear-btn">Очистить все</button>
+      </li>
+    </ul>
+
+    <button class="subfilters-section__popup-btn">
+      <svg width="28" height="28">
+        <use href="#filter" />
+        Фильтры
+      </svg>
+    </button>
+
+    <ul class="subfilters-section__popular-filter-list list">
+      <li class="popular-filter-list__item active">
+        <a href="#" class="popular-filter-list__link">Новинки</a>
+      </li>
+      <li class="popular-filter-list__item">
+        <a href="#" class="popular-filter-list__link">Сначала дешевые</a>
+      </li>
+      <li class="popular-filter-list__item">
+        <a href="#" class="popular-filter-list__link">Сначала дорогие</a>
+      </li>
+      <li class="popular-filter-list__item">
+        <a href="#" class="popular-filter-list__link">Хиты</a>
+      </li>
+      <li class="popular-filter-list__item">
+        <a href="#" class="popular-filter-list__link">По популярности</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="products-section">
+    <ul class="products-section__list list">
+      <li class="present-card">
+        <div class="present-card__wrapper">
+          <button class="present-card__snap present-card__snap--active snap">
+            <svg width="20" height="20" class="present-card__snap-svg">
+              <use href="#favorite" />
+            </svg>
+            <span class="visually-hidden"> Добавить в избранное </span>
+          </button>
+          <div class="present-card__header">
+            <a href="#" class="present-card__link-img">
+              <img class="present-card__img" src="./../../images/c1.jpg" />
+            </a>
+            <div class="present-card__subtitle">
+              <h4 class="present-card__subtitle-name">Серьги</h4>
+              <span class="present-card__subtitle-value"> 23424-40-23 </span>
+            </div>
+            <a href="#" class="present-card__link">
+              <h3 class="present-card__title">Magic Stone</h3>
+            </a>
+            <div class="present-card__action">
+              <span>купи два, на каждое -50%</span>
+            </div>
+          </div>
+          <div class="present-card__footer">
+            <p class="present-card__price">33 666 ₽</p>
+            <button class="present-card__buy-button button">
+              <svg class="present-card__buy-button-svg">
+                <use href="#shopping-bag" />
+              </svg>
+              <span class="present-card__buy-button-text"> В корзину </span>
+            </button>
+          </div>
+        </div>
+      </li>
+
+      <li class="present-card">
+        <div class="present-card__wrapper">
+          <button class="present-card__snap present-card__snap--active snap">
+            <svg width="20" height="20" class="present-card__snap-svg">
+              <use href="#favorite" />
+            </svg>
+            <span class="visually-hidden"> Добавить в избранное </span>
+          </button>
+          <div class="present-card__header">
+            <a href="#" class="present-card__link-img">
+              <img class="present-card__img" src="./../../images/c2.jpg" />
+            </a>
+            <div class="present-card__subtitle">
+              <h4 class="present-card__subtitle-name">Серьги</h4>
+              <span class="present-card__subtitle-value"> 23424-40-23 </span>
+            </div>
+            <a href="#" class="present-card__link">
+              <h3 class="present-card__title">Magic Stone</h3>
+            </a>
+            <div class="present-card__action">
+              <span>купи два, на каждое -50%</span>
+            </div>
+          </div>
+          <div class="present-card__footer">
+            <p class="present-card__price">33 666 ₽</p>
+            <button class="present-card__buy-button button">
+              <svg class="present-card__buy-button-svg">
+                <use href="#shopping-bag" />
+              </svg>
+              <span class="present-card__buy-button-text"> В корзину </span>
+            </button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </section>
