@@ -56,7 +56,6 @@ export default class {
     this.$sliderList.addEventListener('pointerdown', (evt) => {
       evt.preventDefault()
       this.startX = evt.clientX
-      this.startY = evt.clientY
 
       let shiftX = evt.clientX - this.$sliderList.getBoundingClientRect().left
 
