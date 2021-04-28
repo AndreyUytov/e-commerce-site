@@ -70,45 +70,45 @@
       <fieldset
         class="filter-section__fieldset filter-section__fieldset--background"
       >
-        <legend class="filter-section__legend">Категория</legend>
+        <h3 class="filter-section__legend">Категория</h3>
         <label class="filter-section__label">
           <input type="radio" name="radio" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--radio">
             <span class="filter-section__marker-radio"></span>
           </span>
           <span class="filter-section__label-info"> Браслеты </span>
         </label>
         <label class="filter-section__label">
           <input type="radio" name="radio" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--radio">
             <span class="filter-section__marker-radio"></span>
           </span>
           <span class="filter-section__label-info"> Кольца </span>
         </label>
         <label class="filter-section__label">
           <input type="radio" name="radio" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--radio">
             <span class="filter-section__marker-radio"></span>
           </span>
           <span class="filter-section__label-info"> Колье </span>
         </label>
         <label class="filter-section__label">
           <input type="radio" name="radio" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--radio">
             <span class="filter-section__marker-radio"></span>
           </span>
           <span class="filter-section__label-info"> Ионизаторы </span>
         </label>
         <label class="filter-section__label">
           <input type="radio" name="radio" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--radio">
             <span class="filter-section__marker-radio"></span>
           </span>
           <span class="filter-section__label-info"> Брошь </span>
         </label>
         <label class="filter-section__label">
           <input type="radio" name="radio" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--radio">
             <span class="filter-section__marker-radio"></span>
           </span>
           <span class="filter-section__label-info"> Серьги </span>
@@ -117,31 +117,33 @@
 
       <fieldset class="filter-section__fieldset">
         <legend class="filter-section__legend">Цена</legend>
-        <div class="range__wrapper">
-          <span class="range__left-toggle"></span>
-          <span class="range__bar"></span>
-          <span class="range__right-toggle"></span>
-        </div>
-        <div class="filter-section__price-wrapper">
-          <label class="filter-section__price-label">
-            <input
-              type="text"
-              class="filter-section__price-input filter-section__price-input--min"
-            />
-          </label>
-          <label class="filter-section__price-label">
-            <input
-              type="text"
-              class="filter-section__price-input filter-section__price-input--max"
-            />
-          </label>
+        <div class="range-inputs-wrapper">
+          <div class="range__wrapper">
+            <span class="range__toggle range__toggle--left"></span>
+            <span class="range__bar"></span>
+            <span class="range__toggle range__toggle--right"></span>
+          </div>
+          <div class="filter-section__price-wrapper">
+            <label class="filter-section__price-label">
+              <input
+                type="text"
+                class="filter-section__price-input filter-section__price-input--min"
+              />
+            </label>
+            <label class="filter-section__price-label">
+              <input
+                type="text"
+                class="filter-section__price-input filter-section__price-input--max"
+              />
+            </label>
+          </div>
         </div>
       </fieldset>
       <fieldset class="filter-section__fieldset">
         <legend class="filter-section__legend">Бренд</legend>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>
@@ -150,7 +152,7 @@
         </label>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>
@@ -159,7 +161,7 @@
         </label>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>
@@ -168,7 +170,7 @@
         </label>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>
@@ -177,7 +179,7 @@
         </label>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>
@@ -190,7 +192,7 @@
         <legend class="filter-section__legend">Материал</legend>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>
@@ -199,7 +201,7 @@
         </label>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>
@@ -208,7 +210,7 @@
         </label>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>
@@ -217,7 +219,7 @@
         </label>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>
@@ -226,7 +228,7 @@
         </label>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>
@@ -239,7 +241,7 @@
         <legend class="filter-section__legend">Камень вставка</legend>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>
@@ -248,7 +250,7 @@
         </label>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>
@@ -257,7 +259,7 @@
         </label>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>
@@ -266,7 +268,7 @@
         </label>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>
@@ -275,7 +277,7 @@
         </label>
         <label class="filter-section__label">
           <input type="checkbox" class="filter-section__input" />
-          <span class="filter-section__marker">
+          <span class="filter-section__marker filter-section__marker--checkbox">
             <svg width="20" height="20">
               <use href="#checkbox" />
             </svg>

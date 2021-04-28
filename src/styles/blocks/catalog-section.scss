@@ -126,6 +126,13 @@
   align-items: flex-start;
 
   border: none;
+
+  &--background {
+    padding: 16px;
+
+    background-color: #f1f0f5;
+    border-radius: 6px;
+  }
 }
 
 .filter-section__legend {
@@ -158,6 +165,118 @@
   width: 20px;
   height: 20px;
   margin-right: 6px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: solid 1px rgba(0, 0, 0, 0.3);
+
+  &--radio {
+    border-radius: 50%;
+  }
+
+  &--checkbox {
+    border-radius: 4px;
+    & svg {
+      display: none;
+    }
+  }
+}
+
+.filter-section__input {
+  display: none;
+
+  &:checked + .filter-section__marker--checkbox {
+    border: none;
+
+    & svg {
+      display: block;
+    }
+  }
+  &:checked + .filter-section__marker--radio {
+    border: solid 1px var(--akcentColor);
+
+    & .filter-section__marker-radio {
+      width: 12px;
+      height: 12px;
+
+      background-color: var(--akcentColor);
+
+      border-radius: 50%;
+    }
+  }
+}
+
+.filter-section__submit {
+  width: 100%;
+  margin-top: 95px;
+}
+
+.range__wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 4px;
+  margin-bottom: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  background-color: #f1f0f5;
+  border-radius: 4px;
+
+  --min-position: 10%;
+  --max-position: 50%;
+}
+
+.range__toggle {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+
+  background-color: var(--akcentColor);
+  border-radius: 50%;
+
+  cursor: pointer;
+  &--right {
+    left: var(--max-position);
+  }
+  &--left {
+    left: var(--min-position);
+    z-index: 3;
+  }
+}
+
+.range__bar {
+  position: absolute;
+  right: calc(100% - var(--max-position));
+  left: calc(var(--min-position) + 24px);
+
+  height: 100%;
+
+  background-color: var(--akcentColor);
+}
+
+.filter-section__price-wrapper {
+  width: 100%;
+  max-width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 40px;
+  grid-gap: 48px;
+  place-content: space-between;
+}
+
+.filter-section__price-input {
+  width: 100%;
+  height: 100%;
+  padding: 10px 16px;
+
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
 }
 
 .subfilters-section {
