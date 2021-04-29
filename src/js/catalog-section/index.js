@@ -49,6 +49,8 @@ subFilterList.addEventListener('pointerdown', subFilterListListener)
 
 // ползунок в range
 
+const MAX_VALUE = 300000
+
 const rangeInputsWrapper = document.querySelector('.range-inputs-wrapper')
 
 const minInput = rangeInputsWrapper.querySelector(
@@ -73,25 +75,51 @@ rangeWrapper.addEventListener('pointerdown', (evt) => {
 
   let shiftX = evt.clientX - toggle.getBoundingClientRect().left
   let newPosition
+  const rangeWrapperWidth = rangeWrapper.getBoundingClientRect().width
+  let rightEdge = rangeWrapperWidth - 24
+  let step = 100 / rightEdge
+  let input
+  if (toggle.classList.contains('range__toggle--left')) {
+    input = minInput
+  } else {
+    input = maxInput
+  }
 
   const moveAt = (evt) => {
     newPosition = evt.pageX - shiftX - rangeWrapper.getBoundingClientRect().left
     if (newPosition < 0) newPosition = 0
-    if (newPosition > rangeInputsWrapper.getBoundingClientRect().width) {
-      newPosition = rangeInputsWrapper.getBoundingClientRect().right
+    if (newPosition > rightEdge) {
+      newPosition = rightEdge
     }
 
     rangeWrapper.style.setProperty(mutableProperty, `${newPosition}px`)
+
+    input.value = Math.ceil(newPosition * step) * (MAX_VALUE / 100)
   }
 
   toggle.addEventListener('pointermove', moveAt)
 
   const mouseUp = (evt) => {
-    let step = 100 / (rangeWrapper.getBoundingClientRect().width - 48)
-
     toggle.removeEventListener('pointermove', moveAt)
     toggle.removeEventListener('pointerup', mouseUp)
   }
 
   toggle.addEventListener('pointerup', mouseUp)
+})
+
+// close filterSection
+
+const closeFilterSectionSnap = document.querySelector(
+  '.filter-section__close-snap'
+)
+const showFilterSectionSnap = document.querySelector(
+  '.subfilters-section__popup-btn'
+)
+const filterSection = document.querySelector('.catalog-section__filter-section')
+closeFilterSectionSnap.addEventListener('click', (evt) => {
+  filterSection.style.display = ''
+})
+
+showFilterSectionSnap.addEventListener('click', (evt) => {
+  filterSection.style.display = 'flex'
 })
