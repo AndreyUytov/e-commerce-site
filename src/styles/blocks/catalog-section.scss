@@ -7,7 +7,7 @@
 
     display: grid;
     grid-template-columns: 1fr 3fr 9fr 1fr;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto auto 1fr;
     grid-gap: 22px;
     grid-template-areas: '. title title .' '. filter subfilter .' '. filter catalog .';
     place-items: start;
@@ -195,6 +195,8 @@
   font-size: 14px;
   line-height: 20px;
 
+  cursor: pointer;
+
   &:not(:last-of-type) {
     margin-bottom: 16px;
   }
@@ -336,6 +338,7 @@
   @media (min-width: 1100px) {
     grid-area: subfilter;
     height: auto;
+    margin-bottom: 0px;
   }
 }
 
@@ -445,6 +448,7 @@
   margin-bottom: 72px;
   @media (min-width: 1100px) {
     grid-area: catalog;
+    margin-bottom: 0px;
   }
 }
 
@@ -455,6 +459,11 @@
   grid-template-columns: repeat(auto-fit, minmax(156px, 1fr));
   grid-gap: 16px;
   place-content: start;
+
+  @media (min-width: 1100px) {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-gap: 24px;
+  }
 }
 
 .products-section__card {
