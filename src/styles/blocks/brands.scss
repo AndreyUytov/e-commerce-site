@@ -16,7 +16,7 @@
 .brands-section__list {
   grid-column: content;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(156px, 1fr));
   grid-gap: 16px;
   place-content: center;
 }
@@ -28,6 +28,14 @@
 
   .brands-section__list {
     grid-gap: 24px;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brands-section__list-item {
+    width: 180px;
   }
 }
